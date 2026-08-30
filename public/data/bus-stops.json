@@ -6,10 +6,12 @@
     "category": "busStop",
     "lat": 35.7771,
     "lng": 140.3152,
-    "address": "成田市花崎町",
-    "address_en": "Hanazakicho, Narita City",
+    "address": "成田市花崎町839",
+    "address_en": "839 Hanazakicho, Narita City",
     "source": "narita_gtfs",
     "sourceUrl": "https://www.city.narita.chiba.jp/shisei/index0741.html",
+    "operator": "千葉交通 / 成田市コミュニティバス",
+    "operator_en": "Chiba Kotsu / Narita City Bus",
     "accessibility": {
       "wheelchair": true,
       "ostomate": false,
@@ -20,8 +22,23 @@
       "westernStyle": false,
       "maleUsableNursing": false
     },
-    "details": { "nonStepBus": true, "routes": ["津富浦ルート", "大栄ルート"] },
-    "trustScore": 0.9
+    "details": {
+      "nonStepBus": true,
+      "routes": ["津富浦ルート", "大栄ルート", "イオンモール成田線", "竜角寺台線"],
+      "routes_en": ["Tsubura Route", "Taiei Route", "Aeon Mall Line", "Ryukokujidai Line"]
+    },
+    "timetable": [
+      { "route": "津富浦ルート (成田市役所・大栄支往復)", "weekday": ["07:30", "09:15", "11:45", "14:20", "16:50", "18:30"], "weekend": ["08:30", "11:30", "15:00", "17:30"] },
+      { "route": "イオンモール成田 直行便", "weekday": ["08:00", "08:20", "08:40", "09:00", "09:15", "09:30", "09:45", "10:00"], "weekend": ["08:00", "08:15", "08:30", "08:45", "09:00"] }
+    ],
+    "rt_status": {
+      "active": true,
+      "delayMinutes": 0,
+      "nextBusTime": "14:15",
+      "vehicleNumber": "千葉200 か 31-42",
+      "isBarrierFreeVehicle": true
+    },
+    "trustScore": 0.95
   },
   {
     "id": "bus_002",
@@ -30,10 +47,12 @@
     "category": "busStop",
     "lat": 35.7762,
     "lng": 140.3149,
-    "address": "成田市花崎町",
-    "address_en": "Hanazakicho, Narita City",
+    "address": "成田市花崎町828",
+    "address_en": "828 Hanazakicho, Narita City",
     "source": "narita_gtfs",
     "sourceUrl": "https://www.city.narita.chiba.jp/shisei/index0741.html",
+    "operator": "成田市コミュニティバス / 千葉交通",
+    "operator_en": "Narita City Bus / Chiba Kotsu",
     "accessibility": {
       "wheelchair": true,
       "ostomate": false,
@@ -44,8 +63,23 @@
       "westernStyle": false,
       "maleUsableNursing": false
     },
-    "details": { "nonStepBus": true, "routes": ["吉岡ルート", "豊住ルート"] },
-    "trustScore": 0.9
+    "details": {
+      "nonStepBus": true,
+      "routes": ["吉岡ルート", "豊住ルート", "高岡ルート"],
+      "routes_en": ["Yoshioka Route", "Toyozumi Route", "Takaoka Route"]
+    },
+    "timetable": [
+      { "route": "吉岡ルート (成田赤十字病院経由)", "weekday": ["07:10", "08:45", "10:30", "13:00", "15:40", "17:50"], "weekend": ["08:00", "10:30", "14:00", "16:30"] },
+      { "route": "高岡ルート (高岡・名木方面)", "weekday": ["07:40", "09:20", "12:10", "15:00", "18:10"], "weekend": ["09:00", "13:00", "17:00"] }
+    ],
+    "rt_status": {
+      "active": true,
+      "delayMinutes": 2,
+      "nextBusTime": "14:22",
+      "vehicleNumber": "千葉200 か 28-90",
+      "isBarrierFreeVehicle": true
+    },
+    "trustScore": 0.95
   },
   {
     "id": "bus_003",
@@ -54,9 +88,11 @@
     "category": "busStop",
     "lat": 35.7768,
     "lng": 140.3180,
-    "address": "成田市花崎町",
-    "address_en": "Hanazakicho, Narita City",
+    "address": "成田市花崎町760前",
+    "address_en": "In front of 760 Hanazakicho, Narita City",
     "source": "narita_gtfs",
+    "operator": "成田市コミュニティバス",
+    "operator_en": "Narita City Community Bus",
     "accessibility": {
       "wheelchair": true,
       "ostomate": false,
@@ -67,8 +103,22 @@
       "westernStyle": false,
       "maleUsableNursing": false
     },
-    "details": { "nonStepBus": true, "routes": ["市内巡回ルート"] },
-    "trustScore": 0.9
+    "details": {
+      "nonStepBus": true,
+      "routes": ["遠山ルート", "大栄ルート", "小見川ルート"],
+      "routes_en": ["Toyama Route", "Taiei Route", "Omigawa Route"]
+    },
+    "timetable": [
+      { "route": "遠山ルート (本庁舎〜遠山地区循環)", "weekday": ["08:15", "10:00", "12:30", "14:45", "17:15"], "weekend": ["09:00", "12:00", "15:30"] }
+    ],
+    "rt_status": {
+      "active": true,
+      "delayMinutes": 0,
+      "nextBusTime": "14:45",
+      "vehicleNumber": "成田200 か 15-08",
+      "isBarrierFreeVehicle": true
+    },
+    "trustScore": 0.95
   },
   {
     "id": "bus_004",
@@ -77,9 +127,11 @@
     "category": "busStop",
     "lat": 35.7680,
     "lng": 140.3060,
-    "address": "成田市ウイング土屋",
-    "address_en": "Wing-Tsuchiya, Narita City",
+    "address": "成田市ウイング土屋24",
+    "address_en": "24 Wing-Tsuchiya, Narita City",
     "source": "narita_gtfs",
+    "operator": "千葉交通",
+    "operator_en": "Chiba Kotsu",
     "accessibility": {
       "wheelchair": true,
       "ostomate": false,
@@ -90,7 +142,21 @@
       "westernStyle": false,
       "maleUsableNursing": false
     },
-    "details": { "nonStepBus": true, "routes": ["直行バス", "成田市内ルート"] },
+    "details": {
+      "nonStepBus": true,
+      "routes": ["JR成田駅直行便", "成田空港接続便", "安食線"],
+      "routes_en": ["JR Narita Direct", "Narita Airport Conn.", "Ajiki Line"]
+    },
+    "timetable": [
+      { "route": "JR成田駅行 直行便 (15分間隔)", "weekday": ["09:10", "09:25", "09:40", "09:55", "10:10", "10:25"], "weekend": ["09:00", "09:15", "09:30", "09:45", "10:00"] }
+    ],
+    "rt_status": {
+      "active": true,
+      "delayMinutes": 1,
+      "nextBusTime": "14:10",
+      "vehicleNumber": "千葉200 か 35-11",
+      "isBarrierFreeVehicle": true
+    },
     "trustScore": 0.95
   },
   {
@@ -100,9 +166,11 @@
     "category": "busStop",
     "lat": 35.7725,
     "lng": 140.2970,
-    "address": "成田市公津の杜",
-    "address_en": "Kozunomori, Narita City",
+    "address": "成田市公津の杜4丁目",
+    "address_en": "4 Kozunomori, Narita City",
     "source": "narita_gtfs",
+    "operator": "千葉交通 / 成田市コミュニティバス",
+    "operator_en": "Chiba Kotsu / Narita City Bus",
     "accessibility": {
       "wheelchair": true,
       "ostomate": false,
@@ -113,7 +181,60 @@
       "westernStyle": false,
       "maleUsableNursing": false
     },
-    "details": { "nonStepBus": true, "routes": ["公津の杜循環ルート"] },
+    "details": {
+      "nonStepBus": true,
+      "routes": ["公津の杜循環ルート", "成田赤十字病院線"],
+      "routes_en": ["Kozunomori Loop", "Narita Red Cross Hosp. Line"]
+    },
+    "timetable": [
+      { "route": "公津の杜循環ルート", "weekday": ["08:00", "09:30", "11:00", "13:30", "15:30", "17:30"], "weekend": ["09:00", "12:00", "15:00"] }
+    ],
+    "rt_status": {
+      "active": true,
+      "delayMinutes": 0,
+      "nextBusTime": "15:30",
+      "vehicleNumber": "千葉200 か 19-82",
+      "isBarrierFreeVehicle": true
+    },
     "trustScore": 0.9
+  },
+  {
+    "id": "bus_006",
+    "name": "成田赤十字病院 バス停留所",
+    "name_en": "Narita Red Cross Hospital Bus Stop",
+    "category": "busStop",
+    "lat": 35.7712,
+    "lng": 140.2868,
+    "address": "成田市飯田町90-1",
+    "address_en": "90-1 Iidacho, Narita City",
+    "source": "narita_gtfs",
+    "operator": "成田市コミュニティバス / 千葉交通",
+    "operator_en": "Narita City Bus / Chiba Kotsu",
+    "accessibility": {
+      "wheelchair": true,
+      "ostomate": false,
+      "babyChanging": false,
+      "nursingRoom": false,
+      "elevator": false,
+      "handrail": true,
+      "westernStyle": false,
+      "maleUsableNursing": false
+    },
+    "details": {
+      "nonStepBus": true,
+      "routes": ["吉岡ルート", "香取ルート", "宗吾霊堂線"],
+      "routes_en": ["Yoshioka Route", "Katori Route", "Sogo-Reido Line"]
+    },
+    "timetable": [
+      { "route": "吉岡・香取ルート (病院正面玄関前)", "weekday": ["08:20", "10:10", "11:50", "14:00", "16:20"], "weekend": ["09:30", "13:30"] }
+    ],
+    "rt_status": {
+      "active": true,
+      "delayMinutes": 3,
+      "nextBusTime": "14:03",
+      "vehicleNumber": "成田200 か 09-12",
+      "isBarrierFreeVehicle": true
+    },
+    "trustScore": 0.95
   }
 ]

@@ -4,6 +4,7 @@
     "subtitle": "誰でも安心して移動・外出できる成田インクルーシブガイド",
     "searchPlaceholder": "施設名・住所・エリアで検索...",
     "filterTitle": "絞り込みフィルタ",
+    "toggleFilter": "フィルタを折りたたむ / 広げる",
     "categories": "施設カテゴリ",
     "accessibility": "バリアフリー設備",
     "openNow": "現在営業中のみ",
@@ -22,6 +23,19 @@
     "all": "すべて選択",
     "none": "選択解除",
     "resultsCount": "件のスポットを表示中"
+  },
+  "bus": {
+    "operator": "運行事業者",
+    "routes": "運行ルート・系統",
+    "timetable": "時刻表（通過予定時刻）",
+    "weekday": "平日ダイヤ",
+    "weekend": "土休日ダイヤ",
+    "rtStatus": "リアルタイム運行情報 (GTFS-RT)",
+    "onTime": "定刻運行中",
+    "delayed": "分遅延",
+    "nextBus": "次便到着予定",
+    "barrierFreeVehicle": "ノンステップ/バリアフリー車両",
+    "vehicleNo": "車両番号"
   },
   "categories": {
     "toilet": "公衆トイレ",

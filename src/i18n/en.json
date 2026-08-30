@@ -4,6 +4,7 @@
     "subtitle": "Inclusive Mobility Guide for Everyone in Narita City",
     "searchPlaceholder": "Search by spot name, address, area...",
     "filterTitle": "Filter Options",
+    "toggleFilter": "Expand / Collapse Filters",
     "categories": "Categories",
     "accessibility": "Accessibility Features",
     "openNow": "Open Now Only",
@@ -22,6 +23,19 @@
     "all": "Select All",
     "none": "Deselect All",
     "resultsCount": " spots shown"
+  },
+  "bus": {
+    "operator": "Bus Operator",
+    "routes": "Routes & Lines",
+    "timetable": "Timetable (Scheduled Times)",
+    "weekday": "Weekdays",
+    "weekend": "Weekends & Holidays",
+    "rtStatus": "Real-time Bus Status (GTFS-RT)",
+    "onTime": "On Time",
+    "delayed": "min delay",
+    "nextBus": "Next Arrival",
+    "barrierFreeVehicle": "Non-step / Accessible Bus",
+    "vehicleNo": "Vehicle ID"
   },
   "categories": {
     "toilet": "Public Toilet",

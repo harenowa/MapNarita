@@ -36,9 +36,13 @@
             </svg>
             <input type="text" id="search-input" class="search-input" data-i18n-placeholder="app.searchPlaceholder" placeholder="施設名・住所で検索..." />
           </div>
+          <!-- フィルター開閉ボタン -->
+          <button id="toggle-filter-btn" class="toggle-filter-btn">
+            <span id="toggle-filter-text">▼ 絞り込みフィルタを表示</span>
+          </button>
         </div>
 
-        <div class="filter-section">
+        <div id="filter-section" class="filter-section">
           <div class="section-title" data-i18n="app.categories">カテゴリ</div>
           <div id="category-grid" class="category-grid"></div>
 
@@ -53,7 +57,7 @@
           </div>
         </div>
 
-        <div style="padding: 8px 16px 0; font-size: 0.75rem; color: var(--text-muted); font-weight: 600;" id="results-count"></div>
+        <div style="padding: 10px 16px 0; font-size: 0.78rem; color: var(--text-muted); font-weight: 600;" id="results-count"></div>
         <div id="results-list" class="results-list"></div>
       </aside>
 

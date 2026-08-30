@@ -1,4 +1,4 @@
-import { t } from '../i18n/i18n';
+import { t, getCurrentLang } from '../i18n/i18n';
 import { CATEGORIES, ACCESSIBILITY_ATTRS } from '../utils/constants';
 import { getAttrIconSVG } from '../utils/icons';
 import { getTrustBadgeInfo } from '../utils/scoring';
@@ -12,14 +12,33 @@ let currentFilters = {
 
 let onFilterChangeCallback = null;
 let onSpotSelectCallback = null;
+let isFilterExpanded = false;
 
 export function initSidebar(onFilterChange, onSpotSelect) {
   onFilterChangeCallback = onFilterChange;
   onSpotSelectCallback = onSpotSelect;
 
+  renderAll();
+  setupEventListeners();
+
+  window.addEventListener('languagechange', () => {
+    renderAll();
+    if (onFilterChangeCallback) onFilterChangeCallback(currentFilters);
+  });
+}
+
+export function renderAll() {
   renderCategoryButtons();
   renderAccessibilityCheckboxes();
-  setupEventListeners();
+  updateLabels();
+}
+
+function updateLabels() {
+  const searchInput = document.getElementById('search-input');
+  if (searchInput) searchInput.placeholder = t('app.searchPlaceholder');
+
+  const toggleBtnText = document.getElementById('toggle-filter-text');
+  if (toggleBtnText) toggleBtnText.textContent = isFilterExpanded ? `▲ ${t('app.toggleFilter')}` : `▼ ${t('app.toggleFilter')}`;
 }
 
 function renderCategoryButtons() {
@@ -51,6 +70,21 @@ function renderAccessibilityCheckboxes() {
 }
 
 function setupEventListeners() {
+  // フィルター折りたたみトグルボタン
+  const toggleBtn = document.getElementById('toggle-filter-btn');
+  const filterSection = document.getElementById('filter-section');
+  if (toggleBtn && filterSection) {
+    toggleBtn.addEventListener('click', () => {
+      isFilterExpanded = !isFilterExpanded;
+      if (isFilterExpanded) {
+        filterSection.classList.add('expanded');
+      } else {
+        filterSection.classList.remove('expanded');
+      }
+      updateLabels();
+    });
+  }
+
   // 検索入力
   const searchInput = document.getElementById('search-input');
   if (searchInput) {
@@ -102,6 +136,7 @@ function setupEventListeners() {
 export function renderResultsList(spots) {
   const container = document.getElementById('results-list');
   const countEl = document.getElementById('results-count');
+  const currentLang = getCurrentLang();
 
   if (countEl) {
     countEl.textContent = `${spots.length}${t('app.resultsCount')}`;
@@ -110,7 +145,7 @@ export function renderResultsList(spots) {
   if (!container) return;
 
   if (spots.length === 0) {
-    container.innerHTML = `<div style="padding: 20px; text-align: center; color: var(--text-muted);">該当するスポットが見つかりません</div>`;
+    container.innerHTML = `<div style="padding: 20px; text-align: center; color: var(--text-muted);">${currentLang === 'en' ? 'No spots found' : '該当するスポットが見つかりません'}</div>`;
     return;
   }
 
@@ -118,13 +153,16 @@ export function renderResultsList(spots) {
     const catConfig = CATEGORIES[spot.category] || CATEGORIES.facility;
     const trust = getTrustBadgeInfo(spot.trustScore);
 
+    const displayName = currentLang === 'en' && spot.name_en ? spot.name_en : spot.name;
+    const displayAddress = currentLang === 'en' && spot.address_en ? spot.address_en : spot.address;
+
     return `
       <div class="spot-card" data-id="${spot.id}">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px;">
-          <div class="spot-name">${catConfig.icon} ${spot.name}</div>
-          <span class="badge ${trust.class}">${trust.icon} ${trust.label}</span>
+          <div class="spot-name">${catConfig.icon} ${displayName}</div>
+          <span class="badge ${trust.class}">${trust.icon} ${t(`app.${trust.class === 'trust-high' ? 'official' : 'verified'}`)}</span>
         </div>
-        <div class="spot-address">${spot.address || ''}</div>
+        <div class="spot-address">${displayAddress || ''}</div>
         <div class="badge-group">
           ${Object.keys(spot.accessibility || {}).filter(k => spot.accessibility[k]).map(k => `
             <span class="badge">${getAttrIconSVG(k)} ${t(`accessibility.${k}`)}</span>
