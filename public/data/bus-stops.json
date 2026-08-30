@@ -11,11 +11,11 @@
     "source": "narita_gtfs",
     "operator": "千葉交通 / 成田市コミュニティバス",
     "operator_en": "Chiba Kotsu / Narita City Bus",
-    "accessibility": { "wheelchair": true, "elevator": true, "handrail": true, "westernStyle": false },
+    "accessibility": { "wheelchair": true, "elevator": true, "handrail": true },
     "details": { "nonStepBus": true, "routes": ["津富浦ルート", "大栄ルート", "イオンモール成田線", "成田ニュータウン線", "竜角寺台線"] },
     "timetable": [
-      { "route": "イオンモール成田 直行便", "weekday": ["08:00", "08:15", "08:30", "08:45", "09:00", "09:15", "09:30"], "weekend": ["08:00", "08:15", "08:30", "08:45"] },
-      { "route": "成田ニュータウン循環", "weekday": ["07:00", "07:20", "07:40", "08:00", "08:30", "09:00"], "weekend": ["07:30", "08:30", "09:30"] }
+      { "route": "イオンモール成田 直行便", "weekday": ["08:00", "08:15", "08:30", "08:45", "09:00", "09:15"], "weekend": ["08:00", "08:15", "08:30"] },
+      { "route": "成田ニュータウン循環", "weekday": ["07:00", "07:20", "07:40", "08:00", "08:30"], "weekend": ["07:30", "08:30"] }
     ],
     "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:15", "vehicleNumber": "千葉200 か 31-42", "isBarrierFreeVehicle": true },
     "trustScore": 0.95
@@ -35,7 +35,7 @@
     "accessibility": { "wheelchair": true, "handrail": true },
     "details": { "nonStepBus": true, "routes": ["吉岡ルート", "豊住ルート", "高岡ルート", "成田空港接続線"] },
     "timetable": [
-      { "route": "吉岡ルート (赤十字病院経由)", "weekday": ["07:10", "08:45", "10:30", "13:00", "15:40", "17:50"], "weekend": ["08:00", "10:30", "14:00"] }
+      { "route": "吉岡ルート (赤十字病院経由)", "weekday": ["07:10", "08:45", "10:30", "13:00", "15:40"], "weekend": ["08:00", "10:30"] }
     ],
     "rt_status": { "active": true, "delayMinutes": 2, "nextBusTime": "14:22", "vehicleNumber": "千葉200 か 28-90", "isBarrierFreeVehicle": true },
     "trustScore": 0.95
@@ -75,7 +75,7 @@
     "accessibility": { "wheelchair": true, "handrail": true },
     "details": { "nonStepBus": true, "routes": ["JR成田駅直行便", "成田空港接続便", "安食線"] },
     "timetable": [
-      { "route": "JR成田駅行 直行便", "weekday": ["09:10", "09:25", "09:40", "09:55", "10:10", "10:25"], "weekend": ["09:00", "09:15", "09:30"] }
+      { "route": "JR成田駅行 直行便", "weekday": ["09:10", "09:25", "09:40", "09:55", "10:10"], "weekend": ["09:00", "09:15"] }
     ],
     "rt_status": { "active": true, "delayMinutes": 1, "nextBusTime": "14:10", "vehicleNumber": "千葉200 か 35-11", "isBarrierFreeVehicle": true },
     "trustScore": 0.95
@@ -135,8 +135,7 @@
     "accessibility": { "wheelchair": true, "elevator": true, "handrail": true },
     "details": { "nonStepBus": true, "routes": ["東京駅・銀座線", "羽田空港線", "ターミナル間連絡バス", "成田駅行"] },
     "timetable": [
-      { "route": "ターミナル間無料連絡バス (7分間隔)", "weekday": ["06:00", "06:10", "06:20", "06:30", "06:40"], "weekend": ["06:00", "06:10", "06:20"] },
-      { "route": "エアポートバス東京・成田 (都心方面)", "weekday": ["07:00", "07:15", "07:30", "07:45", "08:00"], "weekend": ["07:00", "07:20", "07:40"] }
+      { "route": "ターミナル間無料連絡バス", "weekday": ["06:00", "06:10", "06:20", "06:30"], "weekend": ["06:00", "06:10"] }
     ],
     "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:12", "vehicleNumber": "成田200 か 88-10", "isBarrierFreeVehicle": true },
     "trustScore": 0.98
@@ -176,7 +175,7 @@
     "accessibility": { "wheelchair": true, "handrail": true },
     "details": { "nonStepBus": true, "routes": ["ターミナル連絡バス", "LCC高速バス各線"] },
     "timetable": [
-      { "route": "第2ターミナル連絡バス (徒歩・バス選択可)", "weekday": ["06:00", "06:08", "06:16", "06:24"], "weekend": ["06:00", "06:10"] }
+      { "route": "第2ターミナル連絡バス", "weekday": ["06:00", "06:08", "06:16", "06:24"], "weekend": ["06:00", "06:10"] }
     ],
     "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:08", "vehicleNumber": "成田200 か 88-15", "isBarrierFreeVehicle": true },
     "trustScore": 0.98
@@ -196,7 +195,7 @@
     "accessibility": { "wheelchair": true, "elevator": true, "handrail": true },
     "details": { "nonStepBus": true, "routes": ["高岡ルート", "成田ニュータウン線", "JR成田駅西口線"] },
     "timetable": [
-      { "route": "JR成田駅西口行 (ニュータウン経由)", "weekday": ["07:05", "07:30", "08:00", "08:40", "09:20"], "weekend": ["07:30", "08:30"] }
+      { "route": "JR成田駅西口行 (ニュータウン経由)", "weekday": ["07:05", "07:30", "08:00", "08:40"], "weekend": ["07:30", "08:30"] }
     ],
     "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:30", "vehicleNumber": "千葉200 か 40-12", "isBarrierFreeVehicle": true },
     "trustScore": 0.95
@@ -216,7 +215,7 @@
     "accessibility": { "wheelchair": true, "handrail": true },
     "details": { "nonStepBus": true, "routes": ["JR成田駅西口行", "成田湯川駅行", "ボンベルタ線"] },
     "timetable": [
-      { "route": "JR成田駅西口行 (10〜15分間隔)", "weekday": ["07:02", "07:15", "07:28", "07:40", "07:55"], "weekend": ["07:10", "07:30"] }
+      { "route": "JR成田駅西口行", "weekday": ["07:02", "07:15", "07:28", "07:40"], "weekend": ["07:10", "07:30"] }
     ],
     "rt_status": { "active": true, "delayMinutes": 1, "nextBusTime": "14:15", "vehicleNumber": "千葉200 か 22-10", "isBarrierFreeVehicle": true },
     "trustScore": 0.9
@@ -228,8 +227,8 @@
     "category": "busStop",
     "lat": 35.7766,
     "lng": 140.3134,
-    "address": "成田市花崎町828",
-    "address_en": "Hanazakicho, Narita City",
+    "address": "成田市赤坂1-2",
+    "address_en": "1-2 Akasaka, Narita City",
     "source": "narita_gtfs",
     "operator": "千葉交通",
     "operator_en": "Chiba Kotsu",
@@ -296,7 +295,7 @@
     "accessibility": { "wheelchair": true, "handrail": true },
     "details": { "nonStepBus": true, "routes": ["遠山ルート", "多古本線"] },
     "timetable": [
-      { "route": "JRバス多古本線 (JR成田駅行)", "weekday": ["06:45", "07:15", "07:45", "08:20", "09:00"], "weekend": ["07:00", "08:00"] }
+      { "route": "JRバス多古本線 (JR成田駅行)", "weekday": ["06:45", "07:15", "07:45", "08:20"], "weekend": ["07:00", "08:00"] }
     ],
     "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:20", "vehicleNumber": "千葉200 か 50-01", "isBarrierFreeVehicle": true },
     "trustScore": 0.9
@@ -316,7 +315,7 @@
     "accessibility": { "wheelchair": true, "elevator": true, "handrail": true },
     "details": { "nonStepBus": true, "routes": ["小見川ルート", "高岡ルート"] },
     "timetable": [
-      { "route": "小見川ルート (小見川〜下総〜滑河)", "weekday": ["07:30", "09:50", "13:10", "16:40"], "weekend": ["08:30", "13:30"] }
+      { "route": "小見川ルート", "weekday": ["07:30", "09:50", "13:10", "16:40"], "weekend": ["08:30", "13:30"] }
     ],
     "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "16:40", "vehicleNumber": "成田200 か 07-88", "isBarrierFreeVehicle": true },
     "trustScore": 0.95
@@ -356,7 +355,7 @@
     "accessibility": { "wheelchair": true, "handrail": true },
     "details": { "nonStepBus": true, "routes": ["吉岡ルート", "安食線", "JR成田駅線"] },
     "timetable": [
-      { "route": "JR成田駅行 (吉岡経由)", "weekday": ["06:50", "07:20", "08:10", "09:30", "11:00"], "weekend": ["07:20", "09:30"] }
+      { "route": "JR成田駅行 (吉岡経由)", "weekday": ["06:50", "07:20", "08:10", "09:30"], "weekend": ["07:20", "09:30"] }
     ],
     "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:30", "vehicleNumber": "千葉200 か 38-99", "isBarrierFreeVehicle": true },
     "trustScore": 0.9
@@ -376,7 +375,7 @@
     "accessibility": { "wheelchair": true, "handrail": true },
     "details": { "nonStepBus": true, "routes": ["空港無料シャトルバス", "成田駅無料バス"] },
     "timetable": [
-      { "route": "成田空港第1・第2ターミナル行 (20分間隔)", "weekday": ["06:15", "06:35", "06:55", "07:15", "07:35"], "weekend": ["06:15", "06:35"] }
+      { "route": "成田空港第1・第2ターミナル行", "weekday": ["06:15", "06:35", "06:55", "07:15"], "weekend": ["06:15", "06:35"] }
     ],
     "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:15", "vehicleNumber": "成田200 か 66-01", "isBarrierFreeVehicle": true },
     "trustScore": 0.95
@@ -396,7 +395,7 @@
     "accessibility": { "wheelchair": true, "handrail": true },
     "details": { "nonStepBus": true, "routes": ["空港無料シャトルバス", "JR成田駅直通バス"] },
     "timetable": [
-      { "route": "成田空港行 無料シャトル", "weekday": ["06:30", "07:10", "07:50", "08:30", "09:10"], "weekend": ["06:30", "07:30"] }
+      { "route": "成田空港行 無料シャトル", "weekday": ["06:30", "07:10", "07:50", "08:30"], "weekend": ["06:30", "07:30"] }
     ],
     "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:30", "vehicleNumber": "成田200 か 66-05", "isBarrierFreeVehicle": true },
     "trustScore": 0.95
@@ -416,7 +415,7 @@
     "accessibility": { "wheelchair": true, "handrail": true },
     "details": { "nonStepBus": true, "routes": ["成田山門前線", "JR成田駅東口行"] },
     "timetable": [
-      { "route": "JR成田駅行", "weekday": ["09:30", "10:30", "11:30", "13:30", "14:30", "15:30"], "weekend": ["09:00", "10:00", "11:00", "12:00"] }
+      { "route": "JR成田駅行", "weekday": ["09:30", "10:30", "11:30", "13:30", "14:30"], "weekend": ["09:00", "10:00"] }
     ],
     "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:30", "vehicleNumber": "千葉200 か 31-00", "isBarrierFreeVehicle": true },
     "trustScore": 0.9
@@ -500,5 +499,365 @@
     ],
     "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:40", "vehicleNumber": "千葉200 か 32-15", "isBarrierFreeVehicle": true },
     "trustScore": 0.9
+  },
+  {
+    "id": "bus_026",
+    "name": "吾妻一丁目 バス停留所",
+    "name_en": "Azuma 1-chome Bus Stop",
+    "category": "busStop",
+    "lat": 35.7720,
+    "lng": 140.2920,
+    "address": "成田市吾妻1丁目",
+    "address_en": "1 Azuma, Narita City",
+    "source": "narita_gtfs",
+    "operator": "千葉交通",
+    "operator_en": "Chiba Kotsu",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["吾妻線", "成田湯川駅行", "JR成田駅西口行"] },
+    "timetable": [{ "route": "JR成田駅西口行", "weekday": ["07:10", "07:30", "07:50", "08:15"], "weekend": ["07:40", "08:40"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:35", "vehicleNumber": "千葉200 か 18-50", "isBarrierFreeVehicle": true },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_027",
+    "name": "吾妻ショッピングセンター バス停留所",
+    "name_en": "Azuma Shopping Center Bus Stop",
+    "category": "busStop",
+    "lat": 35.7745,
+    "lng": 140.2910,
+    "address": "成田市吾妻3丁目",
+    "address_en": "3 Azuma, Narita City",
+    "source": "narita_gtfs",
+    "operator": "千葉交通",
+    "operator_en": "Chiba Kotsu",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["吾妻循環", "成田湯川駅行"] },
+    "timetable": [{ "route": "成田湯川駅行", "weekday": ["07:25", "08:05", "08:45"], "weekend": ["08:15"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:45", "vehicleNumber": "千葉200 か 19-10", "isBarrierFreeVehicle": true },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_028",
+    "name": "西中学校前 バス停留所",
+    "name_en": "Nishi Junior High School Bus Stop",
+    "category": "busStop",
+    "lat": 35.7650,
+    "lng": 140.2860,
+    "address": "成田市加良部1丁目",
+    "address_en": "1 Karabe, Narita City",
+    "source": "narita_gtfs",
+    "operator": "千葉交通",
+    "operator_en": "Chiba Kotsu",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["成田ニュータウン線"] },
+    "timetable": [{ "route": "JR成田駅西口行", "weekday": ["07:05", "07:20", "07:35"], "weekend": ["07:30"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:20", "vehicleNumber": "千葉200 か 23-40", "isBarrierFreeVehicle": true },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_029",
+    "name": "美郷台一丁目 バス停留所",
+    "name_en": "Misagodai 1-chome Bus Stop",
+    "category": "busStop",
+    "lat": 35.7860,
+    "lng": 140.3090,
+    "address": "成田市美郷台1丁目",
+    "address_en": "1 Misagodai, Narita City",
+    "source": "narita_gtfs",
+    "operator": "千葉交通",
+    "operator_en": "Chiba Kotsu",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["美郷台線", "イオンモール成田行"] },
+    "timetable": [{ "route": "イオンモール成田行", "weekday": ["08:30", "09:30", "10:30", "11:30"], "weekend": ["09:00", "10:00"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:30", "vehicleNumber": "千葉200 か 30-11", "isBarrierFreeVehicle": true },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_030",
+    "name": "美郷台三丁目 バス停留所",
+    "name_en": "Misagodai 3-chome Bus Stop",
+    "category": "busStop",
+    "lat": 35.7895,
+    "lng": 140.3050,
+    "address": "成田市美郷台3丁目",
+    "address_en": "3 Misagodai, Narita City",
+    "source": "narita_gtfs",
+    "operator": "千葉交通",
+    "operator_en": "Chiba Kotsu",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["美郷台線", "成田湯川駅行"] },
+    "timetable": [{ "route": "成田湯川駅行", "weekday": ["07:40", "08:40", "09:40"], "weekend": ["08:40"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:40", "vehicleNumber": "千葉200 か 30-15", "isBarrierFreeVehicle": true },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_031",
+    "name": "成田郵便局前 バス停留所",
+    "name_en": "Narita Post Office Bus Stop",
+    "category": "busStop",
+    "lat": 35.7790,
+    "lng": 140.3110,
+    "address": "成田市赤坂1-1-3",
+    "address_en": "1-1-3 Akasaka, Narita City",
+    "source": "narita_gtfs",
+    "operator": "千葉交通",
+    "operator_en": "Chiba Kotsu",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["成田ニュータウン線", "JR成田駅西口行"] },
+    "timetable": [{ "route": "JR成田駅西口行", "weekday": ["07:15", "07:35", "07:55"], "weekend": ["08:00"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:35", "vehicleNumber": "千葉200 か 26-80", "isBarrierFreeVehicle": true },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_032",
+    "name": "成田山入口 バス停留所",
+    "name_en": "Naritasan Iriguchi Bus Stop",
+    "category": "busStop",
+    "lat": 35.7800,
+    "lng": 140.3150,
+    "address": "成田市花崎町",
+    "address_en": "Hanazakicho, Narita City",
+    "source": "narita_gtfs",
+    "operator": "千葉交通",
+    "operator_en": "Chiba Kotsu",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["成田山線", "吉岡線"] },
+    "timetable": [{ "route": "成田山門前行", "weekday": ["09:10", "10:10", "11:10", "13:10"], "weekend": ["09:00", "10:00"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:10", "vehicleNumber": "千葉200 か 31-10", "isBarrierFreeVehicle": true },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_033",
+    "name": "幸町 バス停留所",
+    "name_en": "Saiwaicho Bus Stop",
+    "category": "busStop",
+    "lat": 35.7790,
+    "lng": 140.3142,
+    "address": "成田市幸町",
+    "address_en": "Saiwaicho, Narita City",
+    "source": "narita_gtfs",
+    "operator": "千葉交通",
+    "operator_en": "Chiba Kotsu",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["参道循環", "JR成田駅行"] },
+    "timetable": [{ "route": "JR成田駅行", "weekday": ["09:35", "10:35", "11:35"], "weekend": ["09:15", "10:15"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:35", "vehicleNumber": "千葉200 か 31-12", "isBarrierFreeVehicle": true },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_034",
+    "name": "成田山公園入口 バス停留所",
+    "name_en": "Naritasan Park Iriguchi Bus Stop",
+    "category": "busStop",
+    "lat": 35.7840,
+    "lng": 140.3190,
+    "address": "成田市成田1",
+    "address_en": "1 Narita, Narita City",
+    "source": "narita_gtfs",
+    "operator": "千葉交通",
+    "operator_en": "Chiba Kotsu",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["成田山周遊バス"] },
+    "timetable": [{ "route": "JR成田駅東口行", "weekday": ["10:00", "11:30", "13:30", "15:00"], "weekend": ["09:30", "11:00"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "15:00", "vehicleNumber": "千葉200 か 33-05", "isBarrierFreeVehicle": true },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_035",
+    "name": "土屋 バス停留所",
+    "name_en": "Tsuchiya Bus Stop",
+    "category": "busStop",
+    "lat": 35.7740,
+    "lng": 140.3110,
+    "address": "成田市土屋",
+    "address_en": "Tsuchiya, Narita City",
+    "source": "narita_gtfs",
+    "operator": "千葉交通",
+    "operator_en": "Chiba Kotsu",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["イオンモール線", "竜角寺台線"] },
+    "timetable": [{ "route": "イオンモール成田行", "weekday": ["08:25", "08:45", "09:05"], "weekend": ["08:15", "08:35"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:25", "vehicleNumber": "千葉200 か 24-11", "isBarrierFreeVehicle": true },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_036",
+    "name": "イオンタウン成田富里 バス停留所",
+    "name_en": "AEON Town Narita-Tomisato Bus Stop",
+    "category": "busStop",
+    "lat": 35.7770,
+    "lng": 140.3100,
+    "address": "富里市七栄532",
+    "address_en": "532 Nanae, Tomisato City",
+    "source": "narita_gtfs",
+    "operator": "千葉交通",
+    "operator_en": "Chiba Kotsu",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["富里循環線", "JR成田駅東口行"] },
+    "timetable": [{ "route": "JR成田駅東口行", "weekday": ["08:10", "09:10", "10:10", "11:10"], "weekend": ["08:30", "09:30"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:10", "vehicleNumber": "千葉200 か 29-88", "isBarrierFreeVehicle": true },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_037",
+    "name": "日吉倉 バス停留所",
+    "name_en": "Hiyoshikura Bus Stop",
+    "category": "busStop",
+    "lat": 35.7778,
+    "lng": 140.3125,
+    "address": "富里市日吉倉",
+    "address_en": "Hiyoshikura, Tomisato City",
+    "source": "narita_gtfs",
+    "operator": "千葉交通",
+    "operator_en": "Chiba Kotsu",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["日吉倉線", "成田駅行"] },
+    "timetable": [{ "route": "JR成田駅行", "weekday": ["07:15", "08:15", "09:15"], "weekend": ["08:15"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:15", "vehicleNumber": "千葉200 か 31-90", "isBarrierFreeVehicle": true },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_038",
+    "name": "京成成田駅西口 バス停留所",
+    "name_en": "Keisei Narita Sta. West Exit Bus Stop",
+    "category": "busStop",
+    "lat": 35.7775,
+    "lng": 140.3138,
+    "address": "成田市花崎町",
+    "address_en": "Hanazakicho, Narita City",
+    "source": "narita_gtfs",
+    "operator": "千葉交通 / 京成バス",
+    "operator_en": "Chiba Kotsu / Keisei Bus",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["成田山参道線", "富里・八街行"] },
+    "timetable": [{ "route": "八街駅行", "weekday": ["07:30", "09:00", "11:30", "14:30"], "weekend": ["08:30", "12:30"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:30", "vehicleNumber": "千葉200 か 27-50", "isBarrierFreeVehicle": true },
+    "trustScore": 0.95
+  },
+  {
+    "id": "bus_039",
+    "name": "JR成田駅東口 バス停留所",
+    "name_en": "JR Narita Sta. East Exit Bus Stop",
+    "category": "busStop",
+    "lat": 35.7766,
+    "lng": 140.3155,
+    "address": "成田市花崎町",
+    "address_en": "Hanazakicho, Narita City",
+    "source": "narita_gtfs",
+    "operator": "千葉交通 / 京成バス",
+    "operator_en": "Chiba Kotsu / Keisei Bus",
+    "accessibility": { "wheelchair": true, "elevator": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["成田空港行", "多古・小見川行", "佐原行"] },
+    "timetable": [{ "route": "成田空港第2ターミナル行", "weekday": ["06:30", "07:00", "07:30", "08:00"], "weekend": ["07:00", "08:00"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:00", "vehicleNumber": "成田200 か 90-11", "isBarrierFreeVehicle": true },
+    "trustScore": 0.95
+  },
+  {
+    "id": "bus_040",
+    "name": "富里口 バス停留所",
+    "name_en": "Tomisatoguchi Bus Stop",
+    "category": "busStop",
+    "lat": 35.7745,
+    "lng": 140.3120,
+    "address": "成田市花崎町",
+    "address_en": "Hanazakicho, Narita City",
+    "source": "narita_gtfs",
+    "operator": "千葉交通",
+    "operator_en": "Chiba Kotsu",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["富里線", "成田駅行"] },
+    "timetable": [{ "route": "JR成田駅行", "weekday": ["07:22", "08:22", "09:22"], "weekend": ["08:22"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:22", "vehicleNumber": "千葉200 か 20-40", "isBarrierFreeVehicle": true },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_041",
+    "name": "吾妻中学校前 バス停留所",
+    "name_en": "Azuma Junior High School Bus Stop",
+    "category": "busStop",
+    "lat": 35.7800,
+    "lng": 140.2950,
+    "address": "成田市吾妻2丁目",
+    "address_en": "2 Azuma, Narita City",
+    "source": "narita_gtfs",
+    "operator": "千葉交通",
+    "operator_en": "Chiba Kotsu",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["吾妻線", "成田湯川駅行"] },
+    "timetable": [{ "route": "成田湯川駅行", "weekday": ["07:15", "07:45", "08:15"], "weekend": ["08:15"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:15", "vehicleNumber": "千葉200 か 19-33", "isBarrierFreeVehicle": true },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_042",
+    "name": "玉造三丁目 バス停留所",
+    "name_en": "Tamatsukuri 3-chome Bus Stop",
+    "category": "busStop",
+    "lat": 35.7980,
+    "lng": 140.2920,
+    "address": "成田市玉造3丁目",
+    "address_en": "3 Tamatsukuri, Narita City",
+    "source": "narita_gtfs",
+    "operator": "千葉交通",
+    "operator_en": "Chiba Kotsu",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["玉造線", "JR成田駅西口行"] },
+    "timetable": [{ "route": "JR成田駅西口行", "weekday": ["07:08", "07:38", "08:08"], "weekend": ["07:38"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:38", "vehicleNumber": "千葉200 か 32-50", "isBarrierFreeVehicle": true },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_043",
+    "name": "成田ファームランド前 バス停留所",
+    "name_en": "Narita Farmland-mae Bus Stop",
+    "category": "busStop",
+    "lat": 35.8300,
+    "lng": 140.3800,
+    "address": "成田市所1199",
+    "address_en": "1199 Tokoro, Narita City",
+    "source": "narita_gtfs",
+    "operator": "成田市コミュニティbus",
+    "operator_en": "Narita City Bus",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["大栄ルート", "吉岡ルート"] },
+    "timetable": [{ "route": "大栄支所行", "weekday": ["08:40", "11:20", "14:50"], "weekend": ["09:30", "13:30"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:50", "vehicleNumber": "成田200 か 12-30", "isBarrierFreeVehicle": true },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_044",
+    "name": "成田ビューホテル前 バス停留所",
+    "name_en": "Narita View Hotel Bus Stop",
+    "category": "busStop",
+    "lat": 35.7850,
+    "lng": 140.3420,
+    "address": "成田市小菅700",
+    "address_en": "700 Kosuge, Narita City",
+    "source": "airport",
+    "operator": "空港ホテルシャトル / 千葉交通",
+    "operator_en": "Airport Hotel Shuttle / Chiba Kotsu",
+    "accessibility": { "wheelchair": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["空港無料シャトル", "JR成田駅行"] },
+    "timetable": [{ "route": "成田空港行", "weekday": ["06:20", "07:00", "07:40", "08:20"], "weekend": ["06:20", "07:20"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:20", "vehicleNumber": "成田200 か 77-01", "isBarrierFreeVehicle": true },
+    "trustScore": 0.95
+  },
+  {
+    "id": "bus_045",
+    "name": "芝山千代田駅前 バス停留所",
+    "name_en": "Shibayama-Chiyoda Sta. Bus Stop",
+    "category": "busStop",
+    "lat": 35.7480,
+    "lng": 140.3950,
+    "address": "山武郡芝山町香山新田",
+    "address_en": "Shibayama Town",
+    "source": "narita_gtfs",
+    "operator": "千葉交通 / 成田空港交通",
+    "operator_en": "Chiba Kotsu / Narita Airport Transport",
+    "accessibility": { "wheelchair": true, "elevator": true, "handrail": true },
+    "details": { "nonStepBus": true, "routes": ["成田空港第2ターミナル線", "芝山ふれあいバス"] },
+    "timetable": [{ "route": "成田空港第2ターミナル行", "weekday": ["07:15", "08:15", "09:15", "10:15"], "weekend": ["08:15", "10:15"] }],
+    "rt_status": { "active": true, "delayMinutes": 0, "nextBusTime": "14:15", "vehicleNumber": "成田200 か 55-20", "isBarrierFreeVehicle": true },
+    "trustScore": 0.95
   }
 ]
