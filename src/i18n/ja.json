@@ -1,0 +1,68 @@
+{
+  "app": {
+    "title": "成田市バリアフリー・生活支援マップ",
+    "subtitle": "誰でも安心して移動・外出できる成田インクルーシブガイド",
+    "searchPlaceholder": "施設名・住所・エリアで検索...",
+    "filterTitle": "絞り込みフィルタ",
+    "categories": "施設カテゴリ",
+    "accessibility": "バリアフリー設備",
+    "openNow": "現在営業中のみ",
+    "reportButton": "情報を投稿・共有",
+    "currentLocation": "現在地",
+    "trustScore": "信頼性スコア",
+    "verified": "現地確認済",
+    "official": "行政公式データ",
+    "userReported": "ユーザー投稿",
+    "details": "詳細情報",
+    "directions": "経路案内 (Google Maps)",
+    "openGoogleMaps": "Google Mapsで開く",
+    "close": "閉じる",
+    "language": "言語 (Language)",
+    "theme": "テーマ切り替え",
+    "all": "すべて選択",
+    "none": "選択解除",
+    "resultsCount": "件のスポットを表示中"
+  },
+  "categories": {
+    "toilet": "公衆トイレ",
+    "nurseryRoom": "授乳室・おむつ替え",
+    "shop": "店舗・飲食店",
+    "facility": "公共・福祉施設",
+    "airport": "成田空港UD設備",
+    "busStop": "バス停留所"
+  },
+  "accessibility": {
+    "wheelchair": "車椅子対応 / 段差なし",
+    "ostomate": "オストメイト対応",
+    "babyChanging": "おむつ替え台",
+    "nursingRoom": "授乳室あり",
+    "elevator": "エレベーターあり",
+    "handrail": "手すりあり",
+    "westernStyle": "洋式トイレ",
+    "maleUsableNursing": "男性利用可能な授乳・おむつエリア"
+  },
+  "days": {
+    "mon": "月曜日",
+    "tue": "火曜日",
+    "wed": "水曜日",
+    "thu": "木曜日",
+    "fri": "金曜日",
+    "sat": "土曜日",
+    "sun": "日曜日"
+  },
+  "report": {
+    "title": "バリアフリー情報を追加・報告",
+    "spotName": "スポット名称",
+    "spotNamePlaceholder": "例: ○○公園 トイレ",
+    "category": "カテゴリ",
+    "selectCategory": "選択してください",
+    "location": "位置（緯度・経度）",
+    "useCurrentLoc": "現在地を使用",
+    "accessibilitySelect": "備わっているバリアフリー設備",
+    "comment": "詳細コメント・注意点",
+    "commentPlaceholder": "例: スロープの傾斜がやや急です。鍵付き個室があります。",
+    "submit": "投稿を送信",
+    "cancel": "キャンセル",
+    "success": "バリアフリー情報をご投稿いただきありがとうございます！マップに反映されました。"
+  }
+}

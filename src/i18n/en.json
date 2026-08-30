@@ -1,0 +1,68 @@
+{
+  "app": {
+    "title": "Narita Barrier-Free & Life Support Map",
+    "subtitle": "Inclusive Mobility Guide for Everyone in Narita City",
+    "searchPlaceholder": "Search by spot name, address, area...",
+    "filterTitle": "Filter Options",
+    "categories": "Categories",
+    "accessibility": "Accessibility Features",
+    "openNow": "Open Now Only",
+    "reportButton": "Report / Share Info",
+    "currentLocation": "My Location",
+    "trustScore": "Trust Score",
+    "verified": "Field Verified",
+    "official": "Official Data",
+    "userReported": "User Contribution",
+    "details": "Details",
+    "directions": "Directions (Google Maps)",
+    "openGoogleMaps": "Open in Google Maps",
+    "close": "Close",
+    "language": "Language",
+    "theme": "Toggle Theme",
+    "all": "Select All",
+    "none": "Deselect All",
+    "resultsCount": " spots shown"
+  },
+  "categories": {
+    "toilet": "Public Toilet",
+    "nurseryRoom": "Nursing & Diaper Room",
+    "shop": "Shops & Dining",
+    "facility": "Public & Welfare",
+    "airport": "Narita Airport UD",
+    "busStop": "Bus Stop"
+  },
+  "accessibility": {
+    "wheelchair": "Wheelchair Accessible / Step-free",
+    "ostomate": "Ostomate Facilities",
+    "babyChanging": "Diaper Changing Table",
+    "nursingRoom": "Nursing Room",
+    "elevator": "Elevator Available",
+    "handrail": "Handrails Available",
+    "westernStyle": "Western-style Toilet",
+    "maleUsableNursing": "Male Accessible Baby Area"
+  },
+  "days": {
+    "mon": "Monday",
+    "tue": "Tuesday",
+    "wed": "Wednesday",
+    "thu": "Thursday",
+    "fri": "Friday",
+    "sat": "Saturday",
+    "sun": "Sunday"
+  },
+  "report": {
+    "title": "Add / Report Accessibility Info",
+    "spotName": "Spot Name",
+    "spotNamePlaceholder": "e.g. Park Toilet",
+    "category": "Category",
+    "selectCategory": "Select category",
+    "location": "Location (Lat/Lng)",
+    "useCurrentLoc": "Use Current Location",
+    "accessibilitySelect": "Available Accessibility Features",
+    "comment": "Comments & Notes",
+    "commentPlaceholder": "e.g. Ramp is a bit steep. Lockable private room available.",
+    "submit": "Submit Report",
+    "cancel": "Cancel",
+    "success": "Thank you for contributing! Your report has been added to the map."
+  }
+}

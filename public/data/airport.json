@@ -1,0 +1,92 @@
+[
+  {
+    "id": "air_001",
+    "name": "成田国際空港 第1ターミナル (ユニバーサルデザイン設備)",
+    "name_en": "Narita Airport Terminal 1 UD Facilities",
+    "category": "airport",
+    "lat": 35.7647,
+    "lng": 140.3864,
+    "address": "成田市古込1-1 第1ターミナル",
+    "address_en": "1-1 Furugome, Narita Airport T1",
+    "source": "narita_airport",
+    "sourceUrl": "https://www.narita-airport.jp/ja/service/ud/ostomate/",
+    "accessibility": {
+      "wheelchair": true,
+      "ostomate": true,
+      "babyChanging": true,
+      "nursingRoom": true,
+      "elevator": true,
+      "handrail": true,
+      "westernStyle": true,
+      "maleUsableNursing": true
+    },
+    "details": {
+      "hours": "24h (各施設による)",
+      "flashLights": true,
+      "ostomateShower": true,
+      "careBed": true,
+      "description": "多機能トイレ・オストメイト対応温水シャワー、緊急光警報フラッシュライト、大型介護ベッド完備"
+    },
+    "trustScore": 0.98
+  },
+  {
+    "id": "air_002",
+    "name": "成田国際空港 第2ターミナル (ユニバーサルデザイン設備)",
+    "name_en": "Narita Airport Terminal 2 UD Facilities",
+    "category": "airport",
+    "lat": 35.7720,
+    "lng": 140.3868,
+    "address": "成田市古込1-1 第2ターミナル",
+    "address_en": "1-1 Furugome, Narita Airport T2",
+    "source": "narita_airport",
+    "sourceUrl": "https://www.narita-airport.jp/ja/service/ud/ostomate/",
+    "accessibility": {
+      "wheelchair": true,
+      "ostomate": true,
+      "babyChanging": true,
+      "nursingRoom": true,
+      "elevator": true,
+      "handrail": true,
+      "westernStyle": true,
+      "maleUsableNursing": true
+    },
+    "details": {
+      "hours": "24h (各施設による)",
+      "flashLights": true,
+      "ostomateShower": true,
+      "careBed": true,
+      "description": "オストメイト対応汚物流し・可動式手すり・音声誘導案内・点字案内完備"
+    },
+    "trustScore": 0.98
+  },
+  {
+    "id": "air_003",
+    "name": "成田国際空港 第3ターミナル (ユニバーサルデザイン設備)",
+    "name_en": "Narita Airport Terminal 3 UD Facilities",
+    "category": "airport",
+    "lat": 35.7760,
+    "lng": 140.3920,
+    "address": "成田市取香字上人塚148-1 第3ターミナル",
+    "address_en": "Terminal 3, Narita Airport",
+    "source": "narita_airport",
+    "sourceUrl": "https://www.narita-airport.jp/ja/service/ud/ostomate/",
+    "accessibility": {
+      "wheelchair": true,
+      "ostomate": true,
+      "babyChanging": true,
+      "nursingRoom": true,
+      "elevator": true,
+      "handrail": true,
+      "westernStyle": true,
+      "maleUsableNursing": true
+    },
+    "details": {
+      "hours": "24h (各施設による)",
+      "flashLights": true,
+      "ostomateShower": true,
+      "careBed": false,
+      "description": "LCCターミナル内完全段差フリー設計、フラッシュライト付多機能トイレ"
+    },
+    "trustScore": 0.98
+  }
+]

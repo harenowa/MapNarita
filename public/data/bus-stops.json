@@ -1,0 +1,119 @@
+[
+  {
+    "id": "bus_001",
+    "name": "JR成田駅西口 バス停留所",
+    "name_en": "JR Narita Sta. West Exit Bus Stop",
+    "category": "busStop",
+    "lat": 35.7771,
+    "lng": 140.3152,
+    "address": "成田市花崎町",
+    "address_en": "Hanazakicho, Narita City",
+    "source": "narita_gtfs",
+    "sourceUrl": "https://www.city.narita.chiba.jp/shisei/index0741.html",
+    "accessibility": {
+      "wheelchair": true,
+      "ostomate": false,
+      "babyChanging": false,
+      "nursingRoom": false,
+      "elevator": true,
+      "handrail": true,
+      "westernStyle": false,
+      "maleUsableNursing": false
+    },
+    "details": { "nonStepBus": true, "routes": ["津富浦ルート", "大栄ルート"] },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_002",
+    "name": "京成成田駅東口 バス停留所",
+    "name_en": "Keisei Narita Sta. East Exit Bus Stop",
+    "category": "busStop",
+    "lat": 35.7762,
+    "lng": 140.3149,
+    "address": "成田市花崎町",
+    "address_en": "Hanazakicho, Narita City",
+    "source": "narita_gtfs",
+    "sourceUrl": "https://www.city.narita.chiba.jp/shisei/index0741.html",
+    "accessibility": {
+      "wheelchair": true,
+      "ostomate": false,
+      "babyChanging": false,
+      "nursingRoom": false,
+      "elevator": false,
+      "handrail": true,
+      "westernStyle": false,
+      "maleUsableNursing": false
+    },
+    "details": { "nonStepBus": true, "routes": ["吉岡ルート", "豊住ルート"] },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_003",
+    "name": "成田市役所前 バス停留所",
+    "name_en": "Narita City Hall Bus Stop",
+    "category": "busStop",
+    "lat": 35.7768,
+    "lng": 140.3180,
+    "address": "成田市花崎町",
+    "address_en": "Hanazakicho, Narita City",
+    "source": "narita_gtfs",
+    "accessibility": {
+      "wheelchair": true,
+      "ostomate": false,
+      "babyChanging": false,
+      "nursingRoom": false,
+      "elevator": false,
+      "handrail": true,
+      "westernStyle": false,
+      "maleUsableNursing": false
+    },
+    "details": { "nonStepBus": true, "routes": ["市内巡回ルート"] },
+    "trustScore": 0.9
+  },
+  {
+    "id": "bus_004",
+    "name": "イオンモール成田 バス停留所",
+    "name_en": "AEON Mall Narita Bus Stop",
+    "category": "busStop",
+    "lat": 35.7680,
+    "lng": 140.3060,
+    "address": "成田市ウイング土屋",
+    "address_en": "Wing-Tsuchiya, Narita City",
+    "source": "narita_gtfs",
+    "accessibility": {
+      "wheelchair": true,
+      "ostomate": false,
+      "babyChanging": false,
+      "nursingRoom": false,
+      "elevator": false,
+      "handrail": true,
+      "westernStyle": false,
+      "maleUsableNursing": false
+    },
+    "details": { "nonStepBus": true, "routes": ["直行バス", "成田市内ルート"] },
+    "trustScore": 0.95
+  },
+  {
+    "id": "bus_005",
+    "name": "公津の杜駅前 バス停留所",
+    "name_en": "Kozunomori Station Bus Stop",
+    "category": "busStop",
+    "lat": 35.7725,
+    "lng": 140.2970,
+    "address": "成田市公津の杜",
+    "address_en": "Kozunomori, Narita City",
+    "source": "narita_gtfs",
+    "accessibility": {
+      "wheelchair": true,
+      "ostomate": false,
+      "babyChanging": false,
+      "nursingRoom": false,
+      "elevator": true,
+      "handrail": true,
+      "westernStyle": false,
+      "maleUsableNursing": false
+    },
+    "details": { "nonStepBus": true, "routes": ["公津の杜循環ルート"] },
+    "trustScore": 0.9
+  }
+]
