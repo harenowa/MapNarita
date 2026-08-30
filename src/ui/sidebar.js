@@ -12,6 +12,9 @@ let currentFilters = {
 
 let onFilterChangeCallback = null;
 let onSpotSelectCallback = null;
+
+// ボトムシート状態: 'collapsed' (最小化/マップ重視), 'half' (標準), 'expanded' (拡大/一覧重視)
+let sheetState = 'half';
 let isFilterExpanded = false;
 
 export function initSidebar(onFilterChange, onSpotSelect) {
@@ -37,8 +40,17 @@ function updateLabels() {
   const searchInput = document.getElementById('search-input');
   if (searchInput) searchInput.placeholder = t('app.searchPlaceholder');
 
-  const toggleBtnText = document.getElementById('toggle-filter-text');
-  if (toggleBtnText) toggleBtnText.textContent = isFilterExpanded ? `▲ ${t('app.toggleFilter')}` : `▼ ${t('app.toggleFilter')}`;
+  const toggleFilterText = document.getElementById('toggle-filter-text');
+  if (toggleFilterText) {
+    toggleFilterText.textContent = isFilterExpanded ? `▲ ${t('app.toggleFilter')}` : `▼ ${t('app.toggleFilter')}`;
+  }
+
+  const sheetToggleText = document.getElementById('sheet-toggle-text');
+  if (sheetToggleText) {
+    if (sheetState === 'collapsed') sheetToggleText.textContent = '▲ リスト表示・拡大';
+    else if (sheetState === 'half') sheetToggleText.textContent = '▲ 全画面拡大';
+    else sheetToggleText.textContent = '▼ 地図を全画面表示';
+  }
 }
 
 function renderCategoryButtons() {
@@ -70,14 +82,47 @@ function renderAccessibilityCheckboxes() {
 }
 
 function setupEventListeners() {
-  // フィルター折りたたみトグルボタン
-  const toggleBtn = document.getElementById('toggle-filter-btn');
+  const sidebar = document.getElementById('sidebar');
+  const sheetHandle = document.getElementById('sheet-drag-handle');
+  const sheetToggleBtn = document.getElementById('sheet-toggle-btn');
+  const toggleFilterBtn = document.getElementById('toggle-filter-btn');
   const filterSection = document.getElementById('filter-section');
-  if (toggleBtn && filterSection) {
-    toggleBtn.addEventListener('click', () => {
+
+  // ボトムシート状態切替 (最小化 ↔ 標準 ↔ 拡大)
+  const setSheetState = (state) => {
+    sheetState = state;
+    if (sidebar) {
+      sidebar.classList.remove('state-collapsed', 'state-half', 'state-expanded');
+      sidebar.classList.add(`state-${sheetState}`);
+    }
+    updateLabels();
+  };
+
+  if (sheetHandle) {
+    sheetHandle.addEventListener('click', () => {
+      if (sheetState === 'collapsed') setSheetState('half');
+      else if (sheetState === 'half') setSheetState('expanded');
+      else setSheetState('collapsed');
+    });
+  }
+
+  if (sheetToggleBtn) {
+    sheetToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (sheetState === 'collapsed') setSheetState('half');
+      else if (sheetState === 'half') setSheetState('expanded');
+      else setSheetState('collapsed');
+    });
+  }
+
+  // フィルター開閉ボタン
+  if (toggleFilterBtn && filterSection) {
+    toggleFilterBtn.addEventListener('click', () => {
       isFilterExpanded = !isFilterExpanded;
       if (isFilterExpanded) {
         filterSection.classList.add('expanded');
+        // フィルターを開いたらボトムシートも自動的に拡大
+        if (sheetState === 'collapsed') setSheetState('half');
       } else {
         filterSection.classList.remove('expanded');
       }
@@ -90,6 +135,7 @@ function setupEventListeners() {
   if (searchInput) {
     searchInput.addEventListener('input', e => {
       currentFilters.searchQuery = e.target.value;
+      if (sheetState === 'collapsed') setSheetState('half');
       if (onFilterChangeCallback) onFilterChangeCallback(currentFilters);
     });
   }
