@@ -154,7 +154,7 @@ body {
   position: absolute;
   top: 16px;
   left: 16px;
-  width: 380px;
+  width: 410px;
   max-height: calc(100% - 32px);
   background: var(--bg-glass);
   backdrop-filter: blur(20px);
@@ -262,9 +262,10 @@ body {
 
 .filter-section.expanded {
   padding: 12px 16px;
-  max-height: 350px;
+  max-height: min(60vh, 460px);
   overflow-y: auto;
   border-bottom: 1px solid var(--border-glass);
+  flex-shrink: 0;
 }
 
 .section-title {

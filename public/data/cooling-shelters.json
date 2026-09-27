@@ -1,0 +1,446 @@
+[
+  {
+    "id": "shelter_001",
+    "name": "成田市役所本庁舎 クーリングシェルター",
+    "name_en": "Narita City Hall Cooling Shelter",
+    "category": "coolingShelter",
+    "lat": 35.7768,
+    "lng": 140.3180,
+    "address": "成田市花崎町760",
+    "operator": "成田市（環境衛生課）",
+    "source": "成田市公式指定",
+    "accessibility": {
+      "wheelchair": true,
+      "elevator": true,
+      "handrail": true,
+      "ostomate": true,
+      "babyChanging": true
+    },
+    "details": {
+      "facilityType": "公共施設",
+      "openSpace": "1階 市民ロビー",
+      "capacity": "40名",
+      "openHours": "月〜金、第2・第4日曜日 9:00〜16:30",
+      "closedDays": "土曜、第1・3・5日曜、祝日、年末年始（12/29〜1/3）",
+      "targetAlert": "熱中症特別警戒アラート発表時（4月第4水曜〜10月第3水曜）",
+      "equipment": ["冷房完備", "休憩用ベンチ・椅子", "飲料自動販売機", "給水機", "車椅子対応トイレ"],
+      "description": "成田市役所の1階市民ロビーをクーリングシェルターとして開放しています。どなたでも暑さをしのぐ休憩スペースとしてご利用いただけます。"
+    },
+    "trustScore": 0.98
+  },
+  {
+    "id": "shelter_002",
+    "name": "もりんぴあこうづ（公津の杜コミュニティセンター） クーリングシェルター",
+    "name_en": "Morinpia Kozu Cooling Shelter",
+    "category": "coolingShelter",
+    "lat": 35.7606,
+    "lng": 140.2975,
+    "address": "成田市公津の杜4丁目8",
+    "operator": "成田市",
+    "source": "成田市公式指定",
+    "accessibility": {
+      "wheelchair": true,
+      "elevator": true,
+      "handrail": true,
+      "babyChanging": true,
+      "nursingRoom": true
+    },
+    "details": {
+      "facilityType": "公共施設",
+      "openSpace": "1階 サロン、2階 共用スペース",
+      "capacity": "30名",
+      "openHours": "月〜日 9:00〜21:00",
+      "closedDays": "第4月曜日（祝日の場合は翌平日）、年末年始（12/29〜1/3）",
+      "targetAlert": "熱中症特別警戒アラート発表時（クールシェア対応）",
+      "equipment": ["冷房完備", "休憩サロン", "授乳室・おむつ替え台", "公津の杜分館図書館併設", "多目的トイレ"],
+      "description": "公津の杜駅徒歩すぐのコミュニティ拠点です。1階サロンや2階共用スペースにて涼しく過ごすことができます。"
+    },
+    "trustScore": 0.98
+  },
+  {
+    "id": "shelter_003",
+    "name": "赤坂ふれあいセンター クーリングシェルター",
+    "name_en": "Akasaka Fureai Center Cooling Shelter",
+    "category": "coolingShelter",
+    "lat": 35.7788,
+    "lng": 140.2910,
+    "address": "成田市赤坂2丁目1-14（そよら成田ニュータウン アネックスB棟2階）",
+    "operator": "成田市",
+    "source": "成田市公式指定",
+    "accessibility": {
+      "wheelchair": true,
+      "elevator": true,
+      "handrail": true,
+      "babyChanging": true
+    },
+    "details": {
+      "facilityType": "公共施設",
+      "openSpace": "サロン、中央ホール",
+      "capacity": "25名",
+      "openHours": "月〜日 9:00〜21:00",
+      "closedDays": "第4水曜日、年末年始（12/29〜1/3）",
+      "targetAlert": "熱中症特別警戒アラート発表時",
+      "equipment": ["冷房完備", "休憩用ソファ", "情報コーナー", "車椅子対応エレベーター"],
+      "description": "成田ニュータウン中心部のそよら成田ニュータウンアネックスB棟2階に位置し、買い物ついでにも立ち寄れる快適な避難スペースです。"
+    },
+    "trustScore": 0.98
+  },
+  {
+    "id": "shelter_004",
+    "name": "成田観光館 クーリングシェルター",
+    "name_en": "Narita Tourism Pavilion Cooling Shelter",
+    "category": "coolingShelter",
+    "lat": 35.7830,
+    "lng": 140.3175,
+    "address": "成田市本町383-1",
+    "operator": "成田市観光協会 / 成田市",
+    "source": "成田市公式指定",
+    "accessibility": {
+      "wheelchair": true,
+      "handrail": true
+    },
+    "details": {
+      "facilityType": "公共施設",
+      "openSpace": "観光情報コーナー",
+      "capacity": "6名",
+      "openHours": "火〜日 9:00〜17:00",
+      "closedDays": "月曜日（祝日の場合は翌平日）、年末年始（12/29〜12/31）",
+      "targetAlert": "熱中症特別警戒アラート発表時",
+      "equipment": ["冷房完備", "休憩用ベンチ", "観光案内パンフレット", "展示スペース"],
+      "description": "成田山表参道沿いにあり、参拝や散策の途中で危険な暑さを避けて休息できます。"
+    },
+    "trustScore": 0.98
+  },
+  {
+    "id": "shelter_005",
+    "name": "まちかどふれあい館 クーリングシェルター",
+    "name_en": "Machikado Fureai-kan Cooling Shelter",
+    "category": "coolingShelter",
+    "lat": 35.7812,
+    "lng": 140.3168,
+    "address": "成田市上町554-1",
+    "operator": "成田市",
+    "source": "成田市公式指定",
+    "accessibility": {
+      "wheelchair": true,
+      "handrail": true
+    },
+    "details": {
+      "facilityType": "公共施設",
+      "openSpace": "ロビー",
+      "capacity": "6名",
+      "openHours": "火〜日 9:00〜17:00",
+      "closedDays": "月曜日（祝日の場合は翌平日）、年末年始（12/29〜12/31）",
+      "targetAlert": "熱中症特別警戒アラート発表時",
+      "equipment": ["冷房完備", "休憩スペース", "地域の歴史展示"],
+      "description": "表参道上町にある街角の休憩スポットです。熱中症予防の涼み処として利用できます。"
+    },
+    "trustScore": 0.98
+  },
+  {
+    "id": "shelter_006",
+    "name": "豊住ふれあい健康館 クーリングシェルター",
+    "name_en": "Toyosumi Health Center Cooling Shelter",
+    "category": "coolingShelter",
+    "lat": 35.8360,
+    "lng": 140.2950,
+    "address": "成田市北羽鳥1984",
+    "operator": "成田市",
+    "source": "成田市公式指定",
+    "accessibility": {
+      "wheelchair": true,
+      "handrail": true,
+      "babyChanging": true
+    },
+    "details": {
+      "facilityType": "公共施設",
+      "openSpace": "談話室",
+      "capacity": "20名",
+      "openHours": "水〜月 9:00〜21:00",
+      "closedDays": "火曜日（祝日の場合は翌平日）、年末年始（12/27〜1/5）",
+      "targetAlert": "熱中症特別警戒アラート発表時",
+      "equipment": ["冷房完備", "談話用テーブル・椅子", "健康づくり設備", "駐車場完備"],
+      "description": "豊住地区の健康増進拠点です。広々とした談話室で暑さを避けてゆっくり休息できます。"
+    },
+    "trustScore": 0.98
+  },
+  {
+    "id": "shelter_007",
+    "name": "成田国際文化会館 クールシェアスポット",
+    "name_en": "Narita International Cultural Center",
+    "category": "coolingShelter",
+    "lat": 35.7765,
+    "lng": 140.3275,
+    "address": "成田市土屋303",
+    "operator": "成田市",
+    "source": "成田市公式指定",
+    "accessibility": {
+      "wheelchair": true,
+      "elevator": true,
+      "handrail": true,
+      "ostomate": true
+    },
+    "details": {
+      "facilityType": "公共施設",
+      "openSpace": "会議棟 自動販売機コーナー・ロビー",
+      "capacity": "15名",
+      "openHours": "火〜日 9:00〜17:00",
+      "closedDays": "第2・第4月曜日、年末年始",
+      "targetAlert": "熱中症特別警戒アラート発表時（クールシェア）",
+      "equipment": ["冷房完備", "飲料自動販売機", "ロビーベンチ", "無料駐車場"],
+      "description": "文化会館会議棟の自販機コーナーおよびロビーをクールシェアスポットとして開放しています。"
+    },
+    "trustScore": 0.98
+  },
+  {
+    "id": "shelter_008",
+    "name": "成田市役所 大栄支所 クーリングシェルター",
+    "name_en": "Taiei Branch Office Cooling Shelter",
+    "category": "coolingShelter",
+    "lat": 35.8432,
+    "lng": 140.4048,
+    "address": "成田市松子413-1",
+    "operator": "成田市",
+    "source": "成田市公式指定",
+    "accessibility": {
+      "wheelchair": true,
+      "handrail": true,
+      "babyChanging": true
+    },
+    "details": {
+      "facilityType": "公共施設",
+      "openSpace": "1階 ロビー",
+      "capacity": "15名",
+      "openHours": "月〜金 8:30〜17:15",
+      "closedDays": "土日・祝日、年末年始（12/29〜1/3）",
+      "targetAlert": "熱中症特別警戒アラート発表時",
+      "equipment": ["冷房完備", "ロビー待合椅子", "行政窓口", "多目的トイレ"],
+      "description": "大栄支所の1階ロビーをクーリングシェルターとして開放しています。大栄地区の避難場所として利用可能です。"
+    },
+    "trustScore": 0.98
+  },
+  {
+    "id": "shelter_009",
+    "name": "中郷ふるさと交流館 クーリングシェルター",
+    "name_en": "Nakago Furusato Center Cooling Shelter",
+    "category": "coolingShelter",
+    "lat": 35.8055,
+    "lng": 140.2785,
+    "address": "成田市赤荻1574",
+    "operator": "成田市",
+    "source": "成田市公式指定",
+    "accessibility": {
+      "wheelchair": true,
+      "handrail": true
+    },
+    "details": {
+      "facilityType": "公共施設",
+      "openSpace": "サロン、コミュニティルーム",
+      "capacity": "15名",
+      "openHours": "火〜日 9:00〜17:00",
+      "closedDays": "月曜日（祝日の場合は翌平日）、年末年始",
+      "targetAlert": "熱中症特別警戒アラート発表時",
+      "equipment": ["冷房完備", "交流サロン椅子", "和室", "駐車場完備"],
+      "description": "中郷地区の地域交流拠点です。アラート発表時にサロンやコミュニティルームで涼むことができます。"
+    },
+    "trustScore": 0.98
+  },
+  {
+    "id": "shelter_010",
+    "name": "三里塚コミュニティセンター クーリングシェルター",
+    "name_en": "Sanrizuka Community Center Cooling Shelter",
+    "category": "coolingShelter",
+    "lat": 35.7532,
+    "lng": 140.3685,
+    "address": "成田市三里塚2番地",
+    "operator": "成田市",
+    "source": "成田市公式指定",
+    "accessibility": {
+      "wheelchair": true,
+      "elevator": true,
+      "handrail": true,
+      "babyChanging": true
+    },
+    "details": {
+      "facilityType": "公共施設",
+      "openSpace": "1階 サロン",
+      "capacity": "20名",
+      "openHours": "火〜日 9:00〜21:00",
+      "closedDays": "月曜日（祝日の場合は翌平日）、年末年始",
+      "targetAlert": "熱中症特別警戒アラート発表時",
+      "equipment": ["冷房完備", "サロン休憩席", "図書室併設", "車椅子対応トイレ"],
+      "description": "遠山・三里塚エリアの主要公共施設です。1階サロンを涼み処として市民に開放しています。"
+    },
+    "trustScore": 0.98
+  },
+  {
+    "id": "shelter_011",
+    "name": "三里塚御料牧場記念館 クーリングシェルター",
+    "name_en": "Sanrizuka Goryo Farm Memorial Cooling Shelter",
+    "category": "coolingShelter",
+    "lat": 35.7510,
+    "lng": 140.3705,
+    "address": "成田市三里塚御料1-34",
+    "operator": "成田市",
+    "source": "成田市公式指定",
+    "accessibility": {
+      "wheelchair": true,
+      "handrail": true
+    },
+    "details": {
+      "facilityType": "公共施設",
+      "openSpace": "展示スペース・休憩スペース",
+      "capacity": "10名",
+      "openHours": "火〜日 9:00〜16:45",
+      "closedDays": "月曜日（祝日の場合は翌平日）、年末年始",
+      "targetAlert": "熱中症特別警戒アラート発表時",
+      "equipment": ["冷房完備", "休憩用椅子", "御料牧場歴史展示", "三里塚記念公園内"],
+      "description": "歴史ある三里塚記念公園内にある記念館です。公園散策時などの熱中症避難に利用できます。"
+    },
+    "trustScore": 0.98
+  },
+  {
+    "id": "shelter_012",
+    "name": "下総公民館・下総歴史民俗資料館 クーリングシェルター",
+    "name_en": "Shimosa Community Center Cooling Shelter",
+    "category": "coolingShelter",
+    "lat": 35.8652,
+    "lng": 140.3585,
+    "address": "成田市猿山1080",
+    "operator": "成田市",
+    "source": "成田市公式指定",
+    "accessibility": {
+      "wheelchair": true,
+      "handrail": true
+    },
+    "details": {
+      "facilityType": "公共施設",
+      "openSpace": "館内ロビー",
+      "capacity": "15名",
+      "openHours": "火〜日 9:00〜17:00",
+      "closedDays": "月曜日、年末年始",
+      "targetAlert": "熱中症特別警戒アラート発表時",
+      "equipment": ["冷房完備", "ロビーベンチ", "歴史展示コーナー", "駐車場完備"],
+      "description": "下総地区の文化・行政拠点です。ロビーを暑熱避難所として開放しています。"
+    },
+    "trustScore": 0.98
+  },
+  {
+    "id": "shelter_013",
+    "name": "そよら成田ニュータウン クーリングシェルター",
+    "name_en": "Soyora Narita New Town Cooling Shelter",
+    "category": "coolingShelter",
+    "lat": 35.7786,
+    "lng": 140.2916,
+    "address": "成田市赤坂2丁目1-10",
+    "operator": "イオンリテール / 成田市協力指定",
+    "source": "民間協力指定施設",
+    "accessibility": {
+      "wheelchair": true,
+      "elevator": true,
+      "handrail": true,
+      "babyChanging": true,
+      "nursingRoom": true,
+      "ostomate": true
+    },
+    "details": {
+      "facilityType": "民間協力商業施設",
+      "openSpace": "館内レストスペース（1階・2階・フードコート周辺）",
+      "capacity": "50名",
+      "openHours": "月〜日 9:00〜21:00",
+      "closedDays": "年中無休（点検日除く）",
+      "targetAlert": "熱中症特別警戒アラート発表時（クールシェア常時歓迎）",
+      "equipment": ["強力冷房完備", "ベンチ・ソファ多数", "給水施設", "授乳室完備", "車椅子貸出", "食品・飲料売場併設"],
+      "description": "成田ニュータウン中心部のショッピングセンターです。民間協力施設として広い館内休憩所を開放しています。"
+    },
+    "trustScore": 0.95
+  },
+  {
+    "id": "shelter_014",
+    "name": "イオンモール成田 クーリングシェルター",
+    "name_en": "AEON Mall Narita Cooling Shelter",
+    "category": "coolingShelter",
+    "lat": 35.7682,
+    "lng": 140.3065,
+    "address": "成田市ウイング土屋24",
+    "operator": "イオンモール / 成田市協力指定",
+    "source": "民間協力指定施設",
+    "accessibility": {
+      "wheelchair": true,
+      "elevator": true,
+      "handrail": true,
+      "babyChanging": true,
+      "nursingRoom": true,
+      "ostomate": true
+    },
+    "details": {
+      "facilityType": "民間協力商業施設",
+      "openSpace": "各階レストスペース、フードコート、館内ベンチ",
+      "capacity": "80名以上",
+      "openHours": "月〜日 10:00〜21:00",
+      "closedDays": "年中無休",
+      "targetAlert": "熱中症特別警戒アラート発表時（クールシェア常時対応）",
+      "equipment": ["冷房完備", "大型休憩ソファー", "給茶・給水スポット", "授乳室・ベビールーム", "多目的トイレ多数"],
+      "description": "成田市最大級の商業施設です。広い共用通路やフードコートなど、充実した冷房環境で熱中症から身を守ることができます。"
+    },
+    "trustScore": 0.95
+  },
+  {
+    "id": "shelter_015",
+    "name": "ユアエルム成田店 クーリングシェルター",
+    "name_en": "Your ELM Narita Cooling Shelter",
+    "category": "coolingShelter",
+    "lat": 35.7612,
+    "lng": 140.2965,
+    "address": "成田市公津の杜4丁目5-3",
+    "operator": "ユアエルム京成 / 成田市協力指定",
+    "source": "民間協力指定施設",
+    "accessibility": {
+      "wheelchair": true,
+      "elevator": true,
+      "handrail": true,
+      "babyChanging": true,
+      "ostomate": true
+    },
+    "details": {
+      "facilityType": "民間協力商業施設",
+      "openSpace": "センタープラザ周辺、各階レストスペース",
+      "capacity": "40名",
+      "openHours": "月〜日 10:00〜20:00",
+      "closedDays": "年中無休",
+      "targetAlert": "熱中症特別警戒アラート発表時",
+      "equipment": ["冷房完備", "休憩ベンチ", "公津の杜駅直結", "多目的トイレ"],
+      "description": "京成公津の杜駅直結のショッピングセンターです。電車やバスの乗り換え時にもすぐに涼むことができます。"
+    },
+    "trustScore": 0.95
+  },
+  {
+    "id": "shelter_016",
+    "name": "イオンタウン成田富里 クーリングシェルター",
+    "name_en": "AEON Town Narita-Tomisato Cooling Shelter",
+    "category": "coolingShelter",
+    "lat": 35.7770,
+    "lng": 140.3100,
+    "address": "富里市七栄532（成田市境）",
+    "operator": "イオンタウン / 協力避難施設",
+    "source": "民間協力指定施設",
+    "accessibility": {
+      "wheelchair": true,
+      "elevator": true,
+      "handrail": true,
+      "babyChanging": true,
+      "ostomate": true
+    },
+    "details": {
+      "facilityType": "民間協力商業施設",
+      "openSpace": "館内フードコート・共用レストスペース",
+      "capacity": "40名",
+      "openHours": "月〜日 9:00〜21:00",
+      "closedDays": "年中無休",
+      "targetAlert": "熱中症特別警戒アラート発表時",
+      "equipment": ["冷房完備", "テーブル・椅子席", "給水機", "授乳室", "多目的トイレ"],
+      "description": "成田駅東口近く、国道51号線沿いの大型商業施設です。フードコートやレストスペースが避難場所として利用可能です。"
+    },
+    "trustScore": 0.95
+  }
+]

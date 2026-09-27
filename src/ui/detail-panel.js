@@ -32,7 +32,7 @@ export function showDetail(spot) {
     let rtHTML = '';
     if (spot.rt_status) {
       const rt = spot.rt_status;
-      const delayBadge = rt.delayMinutes === 0 
+      const delayBadge = rt.delayMinutes === 0
         ? `<span class="badge trust">🟢 ${t('bus.onTime')}</span>`
         : `<span class="badge danger">🟡 ${rt.delayMinutes}${t('bus.delayed')}</span>`;
 
@@ -88,6 +88,56 @@ export function showDetail(spot) {
     `;
   }
 
+  // クーリングシェルター用 特殊表示
+  let shelterHTML = '';
+  if (spot.category === 'coolingShelter' && spot.details) {
+    const d = spot.details;
+    const equipList = Array.isArray(d.equipment) && d.equipment.length
+      ? d.equipment.map(e => `<li style="margin-bottom:2px;">${e}</li>`).join('')
+      : '';
+
+    shelterHTML = `
+      <div style="margin-top: 12px; background: rgba(100, 180, 255, 0.12); border: 1px solid rgba(100, 180, 255, 0.5); padding: 14px; border-radius: var(--radius-md);">
+        <div style="font-size: 0.75rem; font-weight: 700; color: #5bb8f5; margin-bottom: 10px; letter-spacing: 0.05em;">❄️ クーリングシェルター詳細</div>
+        ${d.facilityType ? `
+          <div style="display: flex; gap: 8px; margin-bottom: 6px; font-size: 0.82rem;">
+            <span style="color: var(--text-muted); min-width: 80px;">${t('shelter.facilityType')}</span>
+            <span style="font-weight: 600;">${d.facilityType}</span>
+          </div>` : ''}
+        ${d.openSpace ? `
+          <div style="display: flex; gap: 8px; margin-bottom: 6px; font-size: 0.82rem;">
+            <span style="color: var(--text-muted); min-width: 80px;">${t('shelter.openSpace')}</span>
+            <span>${d.openSpace}</span>
+          </div>` : ''}
+        ${d.capacity ? `
+          <div style="display: flex; gap: 8px; margin-bottom: 6px; font-size: 0.82rem;">
+            <span style="color: var(--text-muted); min-width: 80px;">${t('shelter.capacity')}</span>
+            <span style="font-weight: 600;">${d.capacity}</span>
+          </div>` : ''}
+        ${d.openHours ? `
+          <div style="display: flex; gap: 8px; margin-bottom: 6px; font-size: 0.82rem;">
+            <span style="color: var(--text-muted); min-width: 80px;">${t('shelter.openHours')}</span>
+            <span>${d.openHours}</span>
+          </div>` : ''}
+        ${d.closedDays ? `
+          <div style="display: flex; gap: 8px; margin-bottom: 6px; font-size: 0.82rem;">
+            <span style="color: var(--text-muted); min-width: 80px;">${t('shelter.closedDays')}</span>
+            <span>${d.closedDays}</span>
+          </div>` : ''}
+        ${d.targetAlert ? `
+          <div style="margin-bottom: 8px; padding: 8px; background: rgba(255,200,0,0.15); border-left: 3px solid #f5a623; border-radius: 4px; font-size: 0.8rem;">
+            ⚠️ <strong>${t('shelter.targetAlert')}:</strong> ${d.targetAlert}
+          </div>` : ''}
+        ${equipList ? `
+          <div style="margin-top: 4px; font-size: 0.82rem;">
+            <div style="color: var(--text-muted); margin-bottom: 4px;">${t('shelter.equipment')}:</div>
+            <ul style="margin: 0; padding-left: 18px; color: var(--text-main);">${equipList}</ul>
+          </div>` : ''}
+      </div>
+    `;
+  }
+
+  // 営業時間
   let hoursHTML = '';
   if (spot.opening_hours) {
     const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
@@ -130,6 +180,7 @@ export function showDetail(spot) {
     </div>
 
     ${busHTML}
+    ${shelterHTML}
 
     ${spot.details && spot.details.description ? `
       <div class="section-title">概要・特記事項</div>
@@ -141,7 +192,7 @@ export function showDetail(spot) {
     ${hoursHTML}
 
     <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 8px;">
-      <a href="https://www.google.com/maps/dir/?api=1&destination=${spot.lat},${spot.lng}" target="_blank" 
+      <a href="https://www.google.com/maps/dir/?api=1&destination=${spot.lat},${spot.lng}" target="_blank"
          style="text-decoration: none; text-align: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 12px; border-radius: var(--radius-md); font-weight: 600; font-size: 0.9rem;">
         🧭 ${t('app.directions')}
       </a>

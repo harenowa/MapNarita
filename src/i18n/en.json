@@ -43,7 +43,17 @@
     "shop": "Shops & Dining",
     "facility": "Public & Welfare",
     "airport": "Narita Airport UD",
-    "busStop": "Bus Stop"
+    "busStop": "Bus Stop",
+    "coolingShelter": "Cooling Shelter"
+  },
+  "shelter": {
+    "openSpace": "Open Space",
+    "capacity": "Estimated Capacity",
+    "openHours": "Available Hours",
+    "closedDays": "Closed Days",
+    "targetAlert": "Opening Condition",
+    "equipment": "Facilities & Features",
+    "facilityType": "Facility Type"
   },
   "accessibility": {
     "wheelchair": "Wheelchair Accessible / Step-free",

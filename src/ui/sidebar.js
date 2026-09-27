@@ -122,7 +122,7 @@ function setupEventListeners() {
       if (isFilterExpanded) {
         filterSection.classList.add('expanded');
         // フィルターを開いたらボトムシートも自動的に拡大
-        if (sheetState === 'collapsed') setSheetState('half');
+        if (sheetState === 'collapsed' || sheetState === 'half') setSheetState('expanded');
       } else {
         filterSection.classList.remove('expanded');
       }

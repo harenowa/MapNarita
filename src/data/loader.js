@@ -4,6 +4,7 @@ import shopsData from '../../public/data/shops.json';
 import facilitiesData from '../../public/data/facilities.json';
 import airportData from '../../public/data/airport.json';
 import busStopsData from '../../public/data/bus-stops.json';
+import coolingSheltersData from '../../public/data/cooling-shelters.json';
 
 import { calculateTrustScore } from '../utils/scoring';
 import { getReports } from '../crowdsource/storage';
@@ -18,7 +19,8 @@ export async function loadAllData() {
       ...shopsData,
       ...facilitiesData,
       ...airportData,
-      ...busStopsData
+      ...busStopsData,
+      ...coolingSheltersData
     ];
 
     // ユーザー投稿データ（LocalStorage）とマージ
