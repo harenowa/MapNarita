@@ -25,6 +25,7 @@ export function showDetail(spot) {
 
   // バス停用 特殊表示
   let busHTML = '';
+  let timetableData = null; // タブ切替用にデータを保持
   if (spot.category === 'busStop') {
     const operator = currentLang === 'en' && spot.operator_en ? spot.operator_en : spot.operator;
     const routes = spot.details && spot.details.routes ? (currentLang === 'en' && spot.details.routes_en ? spot.details.routes_en : spot.details.routes) : [];
@@ -54,20 +55,53 @@ export function showDetail(spot) {
 
     let timetableHTML = '';
     if (spot.timetable && spot.timetable.length > 0) {
+      timetableData = spot.timetable;
+
+      // 方向一覧を取得
+      const directions = [...new Set(spot.timetable.map(tt => tt.direction || tt.route))];
+      const hasDirections = spot.timetable.some(tt => tt.direction);
+
+      // タブボタン生成
+      const dirTabsHTML = directions.length > 1 ? `
+        <div id="dir-tabs" style="display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 10px;">
+          ${directions.map((dir, i) => `
+            <button class="dir-tab-btn${i === 0 ? ' active' : ''}" data-dir="${dir}"
+              style="font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border-glass);
+                     background: ${i === 0 ? 'var(--primary)' : 'rgba(255,255,255,0.07)'}; color: ${i === 0 ? '#fff' : 'var(--text-muted)'};
+                     cursor: pointer; white-space: nowrap;">
+              🚌 ${dir}
+            </button>
+          `).join('')}
+        </div>
+      ` : '';
+
+      // 最初の方向のコンテンツ
+      const firstDir = directions[0];
+      const firstEntries = spot.timetable.filter(tt => (tt.direction || tt.route) === firstDir);
+
+      const renderEntries = (entries) => entries.map(tt => `
+        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: var(--radius-md); margin-bottom: 8px;">
+          <div style="font-size: 0.82rem; font-weight: 700; color: var(--primary-hover); margin-bottom: 6px;">
+            🛣 ${tt.route}${tt.direction && tt.direction !== tt.route ? ` → ${tt.direction}` : ''}
+          </div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px;">
+            <strong style="color: var(--text-main);">${t('bus.weekday')}:</strong>
+            <span>${tt.weekday && tt.weekday.length ? tt.weekday.join('　') : '－'}</span>
+          </div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">
+            <strong style="color: var(--text-main);">${t('bus.weekend')}:</strong>
+            <span>${tt.weekend && tt.weekend.length ? tt.weekend.join('　') : '－'}</span>
+          </div>
+        </div>
+      `).join('');
+
       timetableHTML = `
         <div style="margin-top: 14px;">
           <div class="section-title">⏱️ ${t('bus.timetable')}</div>
-          ${spot.timetable.map(tt => `
-            <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: var(--radius-md); margin-bottom: 8px;">
-              <div style="font-size: 0.82rem; font-weight: 700; color: var(--primary-hover); margin-bottom: 4px;">${tt.route}</div>
-              <div style="font-size: 0.75rem; color: var(--text-muted);">
-                <strong style="color: var(--text-main);">${t('bus.weekday')}:</strong> ${tt.weekday ? tt.weekday.join(', ') : '-'}
-              </div>
-              <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">
-                <strong style="color: var(--text-main);">${t('bus.weekend')}:</strong> ${tt.weekend ? tt.weekend.join(', ') : '-'}
-              </div>
-            </div>
-          `).join('')}
+          ${dirTabsHTML}
+          <div id="timetable-content">
+            ${renderEntries(firstEntries)}
+          </div>
         </div>
       `;
     }
@@ -201,6 +235,44 @@ export function showDetail(spot) {
 
   panel.classList.add('open');
   document.getElementById('close-detail-btn')?.addEventListener('click', hideDetail);
+
+  // 方向タブ切替イベント
+  if (timetableData) {
+    const dirTabs = document.getElementById('dir-tabs');
+    const timetableContent = document.getElementById('timetable-content');
+    if (dirTabs && timetableContent) {
+      dirTabs.addEventListener('click', (e) => {
+        const btn = e.target.closest('.dir-tab-btn');
+        if (!btn) return;
+        const selectedDir = btn.dataset.dir;
+
+        // タブのアクティブ状態を更新
+        dirTabs.querySelectorAll('.dir-tab-btn').forEach(b => {
+          const isActive = b.dataset.dir === selectedDir;
+          b.style.background = isActive ? 'var(--primary)' : 'rgba(255,255,255,0.07)';
+          b.style.color = isActive ? '#fff' : 'var(--text-muted)';
+        });
+
+        // 選択された方向のエントリを表示
+        const entries = timetableData.filter(tt => (tt.direction || tt.route) === selectedDir);
+        timetableContent.innerHTML = entries.map(tt => `
+          <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: var(--radius-md); margin-bottom: 8px;">
+            <div style="font-size: 0.82rem; font-weight: 700; color: var(--primary-hover); margin-bottom: 6px;">
+              🛣 ${tt.route}${tt.direction && tt.direction !== tt.route ? ` → ${tt.direction}` : ''}
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px;">
+              <strong style="color: var(--text-main);">平日:</strong>
+              <span>${tt.weekday && tt.weekday.length ? tt.weekday.join('　') : '－'}</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-muted);">
+              <strong style="color: var(--text-main);">土日祝:</strong>
+              <span>${tt.weekend && tt.weekend.length ? tt.weekend.join('　') : '－'}</span>
+            </div>
+          </div>
+        `).join('');
+      });
+    }
+  }
 }
 
 export function hideDetail() {
