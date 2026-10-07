@@ -44,7 +44,8 @@
     "facility": "公共・福祉施設",
     "airport": "成田空港UD設備",
     "busStop": "バス停留所",
-    "coolingShelter": "クーリングシェルター"
+    "coolingShelter": "クーリングシェルター",
+    "evacuation": "指定避難所・避難場所"
   },
   "shelter": {
     "openSpace": "開放スペース",
@@ -54,6 +55,16 @@
     "targetAlert": "開放条件",
     "equipment": "設備・特徴",
     "facilityType": "施設種別"
+  },
+  "evacuation": {
+    "disasterTypes": "対応災害種別",
+    "capacity": "収容定員",
+    "facilityType": "施設区分",
+    "equipment": "備蓄・施設機能",
+    "flood": "洪水",
+    "earthquake": "地震",
+    "fire": "大規模火災",
+    "large_scale": "広域避難"
   },
   "accessibility": {
     "wheelchair": "車椅子対応 / 段差なし",

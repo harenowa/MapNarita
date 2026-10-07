@@ -44,7 +44,8 @@
     "facility": "Public & Welfare",
     "airport": "Narita Airport UD",
     "busStop": "Bus Stop",
-    "coolingShelter": "Cooling Shelter"
+    "coolingShelter": "Cooling Shelter",
+    "evacuation": "Evacuation Shelter"
   },
   "shelter": {
     "openSpace": "Open Space",
@@ -54,6 +55,16 @@
     "targetAlert": "Opening Condition",
     "equipment": "Facilities & Features",
     "facilityType": "Facility Type"
+  },
+  "evacuation": {
+    "disasterTypes": "Designated Disasters",
+    "capacity": "Capacity",
+    "facilityType": "Facility Type",
+    "equipment": "Equipment & Features",
+    "flood": "Flood",
+    "earthquake": "Earthquake",
+    "fire": "Fire",
+    "large_scale": "Wide-area Evacuation"
   },
   "accessibility": {
     "wheelchair": "Wheelchair Accessible / Step-free",

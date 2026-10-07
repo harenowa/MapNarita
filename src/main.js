@@ -9,6 +9,7 @@ import { showDetail } from './ui/detail-panel';
 import { showReportForm } from './ui/report-form';
 import { showToast } from './ui/toast';
 import { setLang, getCurrentLang, updateDOM } from './i18n/i18n';
+import { initHazardControl } from './ui/hazard-control';
 
 async function bootstrap() {
   // 1. i18n 初期化
@@ -16,6 +17,9 @@ async function bootstrap() {
 
   // 2. 地図の初期化
   initMap('map');
+
+  // 2.5 ハザードマップコントロール初期化
+  initHazardControl();
 
   // 3. マーカー初期化
   initMarkers(spot => {

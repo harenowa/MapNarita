@@ -8,7 +8,8 @@ export const CATEGORIES = {
   facility: { key: 'facility', color: '#10B981', icon: '🏛️' },
   airport: { key: 'airport', color: '#8B5CF6', icon: '✈️' },
   busStop: { key: 'busStop', color: '#6366F1', icon: '🚌' },
-  coolingShelter: { key: 'coolingShelter', color: '#0284C7', icon: '❄️' }
+  coolingShelter: { key: 'coolingShelter', color: '#0284C7', icon: '❄️' },
+  evacuation: { key: 'evacuation', color: '#DC2626', icon: '🏃' }
 };
 
 export const ACCESSIBILITY_ATTRS = [

@@ -194,6 +194,51 @@ export function showDetail(spot) {
     `;
   }
 
+  // 指定緊急避難場所用 特殊表示
+  let evacuationHTML = '';
+  if (spot.category === 'evacuation') {
+    const d = spot.details || {};
+    const types = Array.isArray(spot.types) ? spot.types : [];
+    const typeBadges = types.map(tp => {
+      const label = t(`evacuation.${tp}`) || tp;
+      return `<span class="badge" style="background: rgba(220, 38, 38, 0.2); border: 1px solid #ef4444; color: #fca5a5; font-size: 0.75rem;">🛡️ ${label}</span>`;
+    }).join(' ');
+
+    const equipList = Array.isArray(d.equipment) && d.equipment.length
+      ? d.equipment.map(e => `<li style="margin-bottom:2px;">${e}</li>`).join('')
+      : '';
+
+    evacuationHTML = `
+      <div style="margin-top: 12px; background: rgba(220, 38, 38, 0.12); border: 1px solid rgba(239, 68, 68, 0.4); padding: 14px; border-radius: var(--radius-md);">
+        <div style="font-size: 0.75rem; font-weight: 700; color: #f87171; margin-bottom: 10px; letter-spacing: 0.05em;">🏃 指定避難所・避難場所情報</div>
+        ${types.length ? `
+          <div style="margin-bottom: 8px;">
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px;">${t('evacuation.disasterTypes')}:</div>
+            <div style="display: flex; gap: 4px; flex-wrap: wrap;">${typeBadges}</div>
+          </div>` : ''}
+        ${spot.capacity ? `
+          <div style="display: flex; gap: 8px; margin-bottom: 6px; font-size: 0.82rem;">
+            <span style="color: var(--text-muted); min-width: 80px;">${t('evacuation.capacity')}</span>
+            <span style="font-weight: 600;">約 ${spot.capacity} 名</span>
+          </div>` : ''}
+        ${d.facilityType ? `
+          <div style="display: flex; gap: 8px; margin-bottom: 6px; font-size: 0.82rem;">
+            <span style="color: var(--text-muted); min-width: 80px;">${t('evacuation.facilityType')}</span>
+            <span>${d.facilityType}</span>
+          </div>` : ''}
+        ${spot.note ? `
+          <div style="margin-bottom: 6px; font-size: 0.82rem; color: var(--accent);">
+            📢 ${spot.note}
+          </div>` : ''}
+        ${equipList ? `
+          <div style="margin-top: 6px; font-size: 0.82rem;">
+            <div style="color: var(--text-muted); margin-bottom: 4px;">${t('evacuation.equipment')}:</div>
+            <ul style="margin: 0; padding-left: 18px; color: var(--text-main);">${equipList}</ul>
+          </div>` : ''}
+      </div>
+    `;
+  }
+
   // 営業時間
   let hoursHTML = '';
   if (spot.opening_hours) {
@@ -238,6 +283,7 @@ export function showDetail(spot) {
 
     ${busHTML}
     ${shelterHTML}
+    ${evacuationHTML}
 
     ${spot.details && spot.details.description ? `
       <div class="section-title">概要・特記事項</div>
