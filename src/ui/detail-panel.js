@@ -79,19 +79,42 @@ export function showDetail(spot) {
       const firstDir = directions[0];
       const firstEntries = spot.timetable.filter(tt => (tt.direction || tt.route) === firstDir);
 
+      // 時刻を時間帯ごとにグループ化して表示
+      const formatTimesGrid = (times) => {
+        if (!times || !times.length) return '<span style="color:var(--text-muted);">－</span>';
+        // 時間帯ごとにグループ化
+        const byHour = {};
+        times.forEach(t => {
+          const h = t.split(':')[0];
+          if (!byHour[h]) byHour[h] = [];
+          byHour[h].push(t.split(':')[1]);
+        });
+        return Object.entries(byHour).map(([h, mins]) =>
+          `<span style="display:inline-flex;gap:4px;margin-right:8px;margin-bottom:2px;">
+            <span style="color:var(--primary-hover);font-weight:700;min-width:22px;">${h}</span>
+            <span>${mins.join(' ')}</span>
+          </span>`
+        ).join('');
+      };
+
       const renderEntries = (entries) => entries.map(tt => `
         <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: var(--radius-md); margin-bottom: 8px;">
-          <div style="font-size: 0.82rem; font-weight: 700; color: var(--primary-hover); margin-bottom: 6px;">
-            🛣 ${tt.route}${tt.direction && tt.direction !== tt.route ? ` → ${tt.direction}` : ''}
+          <div style="font-size: 0.82rem; font-weight: 700; color: var(--primary-hover); margin-bottom: 8px;">
+            🛣 ${tt.route}${tt.direction && tt.direction !== tt.route ? ` → <span style="color:var(--accent)">${tt.direction}</span>` : ''}
           </div>
-          <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px;">
-            <strong style="color: var(--text-main);">${t('bus.weekday')}:</strong>
-            <span>${tt.weekday && tt.weekday.length ? tt.weekday.join('　') : '－'}</span>
+          <div style="font-size: 0.78rem; margin-bottom: 6px;">
+            <div style="color:var(--text-muted); margin-bottom:3px;">${t('bus.weekday')}</div>
+            <div style="line-height:1.8; flex-wrap:wrap; display:flex;">
+              ${formatTimesGrid(tt.weekday)}
+            </div>
           </div>
-          <div style="font-size: 0.78rem; color: var(--text-muted);">
-            <strong style="color: var(--text-main);">${t('bus.weekend')}:</strong>
-            <span>${tt.weekend && tt.weekend.length ? tt.weekend.join('　') : '－'}</span>
-          </div>
+          ${tt.weekend && tt.weekend.length ? `
+          <div style="font-size: 0.78rem; padding-top:6px; border-top:1px solid rgba(255,255,255,0.08);">
+            <div style="color:var(--text-muted); margin-bottom:3px;">${t('bus.weekend')}</div>
+            <div style="line-height:1.8; flex-wrap:wrap; display:flex;">
+              ${formatTimesGrid(tt.weekend)}
+            </div>
+          </div>` : ''}
         </div>
       `).join('');
 
@@ -255,19 +278,34 @@ export function showDetail(spot) {
 
         // 選択された方向のエントリを表示
         const entries = timetableData.filter(tt => (tt.direction || tt.route) === selectedDir);
+
+        // 時刻グリッド化ヘルパー
+        const fmtGrid = (times) => {
+          if (!times || !times.length) return '<span style="color:var(--text-muted);">－</span>';
+          const byHour = {};
+          times.forEach(t => { const h = t.split(':')[0]; (byHour[h] = byHour[h] || []).push(t.split(':')[1]); });
+          return Object.entries(byHour).map(([h, mins]) =>
+            `<span style="display:inline-flex;gap:4px;margin-right:8px;margin-bottom:2px;">
+              <span style="color:var(--primary-hover);font-weight:700;min-width:22px;">${h}</span>
+              <span>${mins.join(' ')}</span>
+            </span>`
+          ).join('');
+        };
+
         timetableContent.innerHTML = entries.map(tt => `
           <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: var(--radius-md); margin-bottom: 8px;">
-            <div style="font-size: 0.82rem; font-weight: 700; color: var(--primary-hover); margin-bottom: 6px;">
-              🛣 ${tt.route}${tt.direction && tt.direction !== tt.route ? ` → ${tt.direction}` : ''}
+            <div style="font-size: 0.82rem; font-weight: 700; color: var(--primary-hover); margin-bottom: 8px;">
+              🛣 ${tt.route}${tt.direction && tt.direction !== tt.route ? ` → <span style="color:var(--accent)">${tt.direction}</span>` : ''}
             </div>
-            <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px;">
-              <strong style="color: var(--text-main);">平日:</strong>
-              <span>${tt.weekday && tt.weekday.length ? tt.weekday.join('　') : '－'}</span>
+            <div style="font-size: 0.78rem; margin-bottom: 6px;">
+              <div style="color:var(--text-muted); margin-bottom:3px;">平日ダイヤ</div>
+              <div style="line-height:1.8; flex-wrap:wrap; display:flex;">${fmtGrid(tt.weekday)}</div>
             </div>
-            <div style="font-size: 0.78rem; color: var(--text-muted);">
-              <strong style="color: var(--text-main);">土日祝:</strong>
-              <span>${tt.weekend && tt.weekend.length ? tt.weekend.join('　') : '－'}</span>
-            </div>
+            ${tt.weekend && tt.weekend.length ? `
+            <div style="font-size: 0.78rem; padding-top:6px; border-top:1px solid rgba(255,255,255,0.08);">
+              <div style="color:var(--text-muted); margin-bottom:3px;">土休日ダイヤ</div>
+              <div style="line-height:1.8; flex-wrap:wrap; display:flex;">${fmtGrid(tt.weekend)}</div>
+            </div>` : ''}
           </div>
         `).join('');
       });
