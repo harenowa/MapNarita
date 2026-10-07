@@ -79,48 +79,60 @@ export function showDetail(spot) {
       const firstDir = directions[0];
       const firstEntries = spot.timetable.filter(tt => (tt.direction || tt.route) === firstDir);
 
-      // 時刻を時間帯ごとにグループ化して表示
-      const formatTimesGrid = (times) => {
-        if (!times || !times.length) return '<span style="color:var(--text-muted);">－</span>';
-        // 時間帯ごとにグループ化
+      // 時刻表を時間帯（時：分 分）のクリーンな一覧表形式でレンダリングする共通関数
+      const formatTimesTable = (times) => {
+        if (!times || !times.length) return '<div style="color:var(--text-muted); padding:4px 0;">運行便なし</div>';
         const byHour = {};
         times.forEach(t => {
-          const h = t.split(':')[0];
-          if (!byHour[h]) byHour[h] = [];
-          byHour[h].push(t.split(':')[1]);
+          if (!t.includes(':')) return;
+          const [h, m] = t.split(':');
+          const hourKey = parseInt(h, 10);
+          if (!byHour[hourKey]) byHour[hourKey] = [];
+          byHour[hourKey].push(m);
         });
-        return Object.entries(byHour).map(([h, mins]) =>
-          `<span style="display:inline-flex;gap:4px;margin-right:8px;margin-bottom:2px;">
-            <span style="color:var(--primary-hover);font-weight:700;min-width:22px;">${h}</span>
-            <span>${mins.join(' ')}</span>
-          </span>`
-        ).join('');
+
+        // 始発〜最終の時を取り出し
+        const hours = Object.keys(byHour).map(Number).sort((a, b) => a - b);
+        if (!hours.length) return '<div style="color:var(--text-muted);">運行便なし</div>';
+
+        return `
+          <div style="display:grid; grid-template-columns: 36px 1fr; gap: 4px 10px; font-size: 0.82rem; background: rgba(0,0,0,0.25); border-radius: var(--radius-sm); padding: 8px 10px; max-height: 240px; overflow-y: auto;">
+            ${hours.map(h => `
+              <div style="font-weight: 700; color: var(--primary); text-align: right; border-right: 2px solid var(--primary-light); padding-right: 6px;">
+                ${h}時
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; letter-spacing: 0.05em; color: var(--text-main);">
+                ${byHour[h].map(m => `<span style="background: rgba(255,255,255,0.06); padding: 1px 5px; border-radius: 4px; font-family: monospace;">${m}</span>`).join('')}
+              </div>
+            `).join('')}
+          </div>
+        `;
       };
 
       const renderEntries = (entries) => entries.map(tt => `
-        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: var(--radius-md); margin-bottom: 8px;">
-          <div style="font-size: 0.82rem; font-weight: 700; color: var(--primary-hover); margin-bottom: 8px;">
-            🛣 ${tt.route}${tt.direction && tt.direction !== tt.route ? ` → <span style="color:var(--accent)">${tt.direction}</span>` : ''}
+        <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: var(--radius-md); margin-bottom: 10px; border: 1px solid var(--border-glass);">
+          <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-hover); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+            <span>🛣 ${tt.route}</span>
+            <span style="font-size: 0.78rem; background: rgba(99, 102, 241, 0.2); color: var(--accent); padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.3);">
+              ${tt.direction ? `${tt.direction}` : ''}
+            </span>
           </div>
-          <div style="font-size: 0.78rem; margin-bottom: 6px;">
-            <div style="color:var(--text-muted); margin-bottom:3px;">${t('bus.weekday')}</div>
-            <div style="line-height:1.8; flex-wrap:wrap; display:flex;">
-              ${formatTimesGrid(tt.weekday)}
-            </div>
+          <div style="margin-bottom: 8px;">
+            <div style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); margin-bottom: 4px;">📅 平日ダイヤ（終日）</div>
+            ${formatTimesTable(tt.weekday)}
           </div>
           ${tt.weekend && tt.weekend.length ? `
-          <div style="font-size: 0.78rem; padding-top:6px; border-top:1px solid rgba(255,255,255,0.08);">
-            <div style="color:var(--text-muted); margin-bottom:3px;">${t('bus.weekend')}</div>
-            <div style="line-height:1.8; flex-wrap:wrap; display:flex;">
-              ${formatTimesGrid(tt.weekend)}
-            </div>
+          <div style="margin-top: 8px;">
+            <div style="font-size: 0.75rem; font-weight: 600; color: #f59e0b; margin-bottom: 4px;">🏖️ 土休日ダイヤ（終日）</div>
+            ${formatTimesTable(tt.weekend)}
           </div>` : ''}
         </div>
       `).join('');
 
       timetableHTML = `
         <div style="margin-top: 14px;">
-          <div class="section-title">⏱️ ${t('bus.timetable')}</div>
+          <div class="section-title">⏱️ ${t('bus.timetable')}（終日運行）</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 6px;">目的地方向（上り・下り）を選択して切り替え:</div>
           ${dirTabsHTML}
           <div id="timetable-content">
             ${renderEntries(firstEntries)}
@@ -325,32 +337,49 @@ export function showDetail(spot) {
         // 選択された方向のエントリを表示
         const entries = timetableData.filter(tt => (tt.direction || tt.route) === selectedDir);
 
-        // 時刻グリッド化ヘルパー
-        const fmtGrid = (times) => {
-          if (!times || !times.length) return '<span style="color:var(--text-muted);">－</span>';
+        const formatTimesTableTab = (times) => {
+          if (!times || !times.length) return '<div style="color:var(--text-muted); padding:4px 0;">運行便なし</div>';
           const byHour = {};
-          times.forEach(t => { const h = t.split(':')[0]; (byHour[h] = byHour[h] || []).push(t.split(':')[1]); });
-          return Object.entries(byHour).map(([h, mins]) =>
-            `<span style="display:inline-flex;gap:4px;margin-right:8px;margin-bottom:2px;">
-              <span style="color:var(--primary-hover);font-weight:700;min-width:22px;">${h}</span>
-              <span>${mins.join(' ')}</span>
-            </span>`
-          ).join('');
+          times.forEach(t => {
+            if (!t.includes(':')) return;
+            const [h, m] = t.split(':');
+            const hourKey = parseInt(h, 10);
+            if (!byHour[hourKey]) byHour[hourKey] = [];
+            byHour[hourKey].push(m);
+          });
+          const hours = Object.keys(byHour).map(Number).sort((a, b) => a - b);
+          if (!hours.length) return '<div style="color:var(--text-muted);">運行便なし</div>';
+
+          return `
+            <div style="display:grid; grid-template-columns: 36px 1fr; gap: 4px 10px; font-size: 0.82rem; background: rgba(0,0,0,0.25); border-radius: var(--radius-sm); padding: 8px 10px; max-height: 240px; overflow-y: auto;">
+              ${hours.map(h => `
+                <div style="font-weight: 700; color: var(--primary); text-align: right; border-right: 2px solid var(--primary-light); padding-right: 6px;">
+                  ${h}時
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; letter-spacing: 0.05em; color: var(--text-main);">
+                  ${byHour[h].map(m => `<span style="background: rgba(255,255,255,0.06); padding: 1px 5px; border-radius: 4px; font-family: monospace;">${m}</span>`).join('')}
+                </div>
+              `).join('')}
+            </div>
+          `;
         };
 
         timetableContent.innerHTML = entries.map(tt => `
-          <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: var(--radius-md); margin-bottom: 8px;">
-            <div style="font-size: 0.82rem; font-weight: 700; color: var(--primary-hover); margin-bottom: 8px;">
-              🛣 ${tt.route}${tt.direction && tt.direction !== tt.route ? ` → <span style="color:var(--accent)">${tt.direction}</span>` : ''}
+          <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: var(--radius-md); margin-bottom: 10px; border: 1px solid var(--border-glass);">
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-hover); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+              <span>🛣 ${tt.route}</span>
+              <span style="font-size: 0.78rem; background: rgba(99, 102, 241, 0.2); color: var(--accent); padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.3);">
+                ${tt.direction ? `${tt.direction}` : ''}
+              </span>
             </div>
-            <div style="font-size: 0.78rem; margin-bottom: 6px;">
-              <div style="color:var(--text-muted); margin-bottom:3px;">平日ダイヤ</div>
-              <div style="line-height:1.8; flex-wrap:wrap; display:flex;">${fmtGrid(tt.weekday)}</div>
+            <div style="margin-bottom: 8px;">
+              <div style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); margin-bottom: 4px;">📅 平日ダイヤ（終日）</div>
+              ${formatTimesTableTab(tt.weekday)}
             </div>
             ${tt.weekend && tt.weekend.length ? `
-            <div style="font-size: 0.78rem; padding-top:6px; border-top:1px solid rgba(255,255,255,0.08);">
-              <div style="color:var(--text-muted); margin-bottom:3px;">土休日ダイヤ</div>
-              <div style="line-height:1.8; flex-wrap:wrap; display:flex;">${fmtGrid(tt.weekend)}</div>
+            <div style="margin-top: 8px;">
+              <div style="font-size: 0.75rem; font-weight: 600; color: #f59e0b; margin-bottom: 4px;">🏖️ 土休日ダイヤ（終日）</div>
+              ${formatTimesTableTab(tt.weekend)}
             </div>` : ''}
           </div>
         `).join('');
