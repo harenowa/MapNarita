@@ -30,28 +30,34 @@ export function showDetail(spot) {
     const operator = currentLang === 'en' && spot.operator_en ? spot.operator_en : spot.operator;
     const routes = spot.details && spot.details.routes ? (currentLang === 'en' && spot.details.routes_en ? spot.details.routes_en : spot.details.routes) : [];
 
-    let rtHTML = '';
-    if (spot.rt_status) {
-      const rt = spot.rt_status;
+    // 方向別のリアルタイム情報取得ヘルパー
+    const getRTHTML = (dirName) => {
+      const rtMap = spot.rt_status_by_direction || {};
+      const rt = rtMap[dirName] || spot.rt_status;
+      if (!rt) return '';
+
       const delayBadge = rt.delayMinutes === 0
         ? `<span class="badge trust">🟢 ${t('bus.onTime')}</span>`
         : `<span class="badge danger">🟡 ${rt.delayMinutes}${t('bus.delayed')}</span>`;
 
-      rtHTML = `
-        <div style="margin-top: 14px; background: rgba(45, 139, 110, 0.15); border: 1px solid var(--primary); padding: 12px; border-radius: var(--radius-md);">
-          <div style="font-size: 0.75rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; display: flex; justify-content: space-between;">
-            <span>🚌 ${t('bus.rtStatus')}</span>
+      return `
+        <div class="rt-status-box" style="margin-top: 14px; background: rgba(45, 139, 110, 0.15); border: 1px solid var(--primary); padding: 12px; border-radius: var(--radius-md);">
+          <div style="font-size: 0.75rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+            <span>🚌 ${t('bus.rtStatus')} <span style="color:var(--accent); font-weight:600;">[${dirName || '全方向'}]</span></span>
             ${delayBadge}
           </div>
-          <div style="font-size: 0.85rem; font-weight: 600;">
-            ${t('bus.nextBus')}: <span style="font-size: 1.1rem; color: var(--accent);">${rt.nextBusTime}</span>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
+            <div style="font-size: 0.85rem; font-weight: 600;">
+              ${t('bus.nextBus')}: <span style="font-size: 1.15rem; color: var(--accent); font-weight: 700;">${rt.nextBusTime}</span>
+            </div>
+            ${rt.crowdingLevel ? `<span style="font-size: 0.72rem; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; color: var(--text-main);">👥 ${rt.crowdingLevel}</span>` : ''}
           </div>
-          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">
-            ${rt.isBarrierFreeVehicle ? `♿ ${t('bus.barrierFreeVehicle')} | ` : ''} ${t('bus.vehicleNo')}: ${rt.vehicleNumber}
+          <div style="font-size: 0.75rem; color: var(--text-muted);">
+            ${rt.isBarrierFreeVehicle ? `♿ ${t('bus.barrierFreeVehicle')} | ` : ''}${t('bus.vehicleNo')}: <span style="font-family: monospace;">${rt.vehicleNumber}</span>
           </div>
         </div>
       `;
-    }
+    };
 
     let timetableHTML = '';
     if (spot.timetable && spot.timetable.length > 0) {
@@ -60,6 +66,7 @@ export function showDetail(spot) {
       // 方向一覧を取得
       const directions = [...new Set(spot.timetable.map(tt => tt.direction || tt.route))];
       const hasDirections = spot.timetable.some(tt => tt.direction);
+      const firstDir = directions[0];
 
       // タブボタン生成
       const dirTabsHTML = directions.length > 1 ? `
@@ -76,7 +83,6 @@ export function showDetail(spot) {
       ` : '';
 
       // 最初の方向のコンテンツ
-      const firstDir = directions[0];
       const firstEntries = spot.timetable.filter(tt => (tt.direction || tt.route) === firstDir);
 
       // 時刻表を時間帯（時：分 分）のクリーンな一覧表形式でレンダリングする共通関数
@@ -134,7 +140,10 @@ export function showDetail(spot) {
           <div class="section-title">⏱️ ${t('bus.timetable')}（終日運行）</div>
           <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 6px;">目的地方向（上り・下り）を選択して切り替え:</div>
           ${dirTabsHTML}
-          <div id="timetable-content">
+          <div id="rt-status-container">
+            ${getRTHTML(firstDir)}
+          </div>
+          <div id="timetable-content" style="margin-top: 10px;">
             ${renderEntries(firstEntries)}
           </div>
         </div>
@@ -151,7 +160,6 @@ export function showDetail(spot) {
             <strong>${t('bus.routes')}:</strong> ${routes.join(' / ')}
           </div>
         ` : ''}
-        ${rtHTML}
         ${timetableHTML}
       </div>
     `;
@@ -333,6 +341,36 @@ export function showDetail(spot) {
           b.style.background = isActive ? 'var(--primary)' : 'rgba(255,255,255,0.07)';
           b.style.color = isActive ? '#fff' : 'var(--text-muted)';
         });
+
+        // 選択された方向のリアルタイム運行情報を更新
+        const rtContainer = document.getElementById('rt-status-container');
+        if (rtContainer && spot.category === 'busStop') {
+          // getRTHTML相当の動的生成
+          const rtMap = spot.rt_status_by_direction || {};
+          const rt = rtMap[selectedDir] || spot.rt_status;
+          if (rt) {
+            const delayBadge = rt.delayMinutes === 0
+              ? `<span class="badge trust">🟢 ${t('bus.onTime')}</span>`
+              : `<span class="badge danger">🟡 ${rt.delayMinutes}${t('bus.delayed')}</span>`;
+            rtContainer.innerHTML = `
+              <div class="rt-status-box" style="margin-top: 14px; background: rgba(45, 139, 110, 0.15); border: 1px solid var(--primary); padding: 12px; border-radius: var(--radius-md);">
+                <div style="font-size: 0.75rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+                  <span>🚌 ${t('bus.rtStatus')} <span style="color:var(--accent); font-weight:600;">[${selectedDir}]</span></span>
+                  ${delayBadge}
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
+                  <div style="font-size: 0.85rem; font-weight: 600;">
+                    ${t('bus.nextBus')}: <span style="font-size: 1.15rem; color: var(--accent); font-weight: 700;">${rt.nextBusTime}</span>
+                  </div>
+                  ${rt.crowdingLevel ? `<span style="font-size: 0.72rem; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; color: var(--text-main);">👥 ${rt.crowdingLevel}</span>` : ''}
+                </div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">
+                  ${rt.isBarrierFreeVehicle ? `♿ ${t('bus.barrierFreeVehicle')} | ` : ''}${t('bus.vehicleNo')}: <span style="font-family: monospace;">${rt.vehicleNumber}</span>
+                </div>
+              </div>
+            `;
+          }
+        }
 
         // 選択された方向のエントリを表示
         const entries = timetableData.filter(tt => (tt.direction || tt.route) === selectedDir);
