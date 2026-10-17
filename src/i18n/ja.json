@@ -34,6 +34,10 @@
     "onTime": "定刻運行中",
     "delayed": "分遅延",
     "nextBus": "次便到着予定",
+    "serviceEnded": "本日の運行は終了しました",
+    "serviceEndedBadge": "運行終了",
+    "firstBusTomorrow": "翌朝始発便",
+    "approxMin": "約{m}分後",
     "barrierFreeVehicle": "ノンステップ/バリアフリー車両",
     "vehicleNo": "車両番号"
   },

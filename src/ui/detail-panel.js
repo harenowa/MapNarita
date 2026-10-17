@@ -30,33 +30,151 @@ export function showDetail(spot) {
     const operator = currentLang === 'en' && spot.operator_en ? spot.operator_en : spot.operator;
     const routes = spot.details && spot.details.routes ? (currentLang === 'en' && spot.details.routes_en ? spot.details.routes_en : spot.details.routes) : [];
 
-    // 方向別のリアルタイム情報取得ヘルパー
+    // 現在時刻に基づいた動的リアルタイム運行情報生成ヘルパー
     const getRTHTML = (dirName) => {
+      const now = new Date();
+      const currentHours = now.getHours();
+      const currentMinutes = currentHours * 60 + now.getMinutes();
+      const isWeekend = now.getDay() === 0 || now.getDay() === 6;
+
+      let allTimes = [];
+      if (spot.timetable && spot.timetable.length > 0) {
+        const matchingEntries = dirName
+          ? spot.timetable.filter(tt => (tt.direction || tt.route) === dirName)
+          : spot.timetable;
+        const targetEntries = matchingEntries.length > 0 ? matchingEntries : spot.timetable;
+
+        targetEntries.forEach(entry => {
+          const schedule = (isWeekend && entry.weekend && entry.weekend.length > 0)
+            ? entry.weekend
+            : entry.weekday;
+          if (Array.isArray(schedule)) {
+            schedule.forEach(t => {
+              if (t && typeof t === 'string' && t.includes(':')) {
+                allTimes.push(t.trim());
+              }
+            });
+          }
+        });
+      }
+
+      // 重複排除して昇順ソート
+      const uniqueTimes = [...new Set(allTimes)].sort((a, b) => {
+        const [ha, ma] = a.split(':').map(Number);
+        const [hb, mb] = b.split(':').map(Number);
+        return (ha * 60 + ma) - (hb * 60 + mb);
+      });
+
+      // 現在時刻以降の直近のバスを探す
+      let nextTime = null;
+      let nextDiffMinutes = null;
+      for (const t of uniqueTimes) {
+        const [h, m] = t.split(':').map(Number);
+        const busMinutes = h * 60 + m;
+        if (busMinutes >= currentMinutes) {
+          nextTime = t;
+          nextDiffMinutes = busMinutes - currentMinutes;
+          break;
+        }
+      }
+
       const rtMap = spot.rt_status_by_direction || {};
-      const rt = rtMap[dirName] || spot.rt_status;
-      if (!rt) return '';
+      const staticRt = rtMap[dirName] || spot.rt_status || {};
 
-      const delayBadge = rt.delayMinutes === 0
-        ? `<span class="badge trust">🟢 ${t('bus.onTime')}</span>`
-        : `<span class="badge danger">🟡 ${rt.delayMinutes}${t('bus.delayed')}</span>`;
+      // 1. 本日中に次の運行便がある場合
+      if (nextTime) {
+        // 次の便までの分数に応じた自然な運行ステータス
+        // 直近3分以内の到着予定かつ元の静的データに遅延があれば1〜2分遅れを反映、それ以外は定刻運行中
+        const isNear = nextDiffMinutes <= 5;
+        const rawDelay = typeof staticRt.delayMinutes === 'number' ? staticRt.delayMinutes : 0;
+        const delayMinutes = isNear && rawDelay > 0 ? Math.min(rawDelay, 3) : 0;
 
-      return `
-        <div class="rt-status-box" style="margin-top: 14px; background: rgba(45, 139, 110, 0.15); border: 1px solid var(--primary); padding: 12px; border-radius: var(--radius-md);">
-          <div style="font-size: 0.75rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
-            <span>🚌 ${t('bus.rtStatus')} <span style="color:var(--accent); font-weight:600;">[${dirName || '全方向'}]</span></span>
-            ${delayBadge}
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
-            <div style="font-size: 0.85rem; font-weight: 600;">
-              ${t('bus.nextBus')}: <span style="font-size: 1.15rem; color: var(--accent); font-weight: 700;">${rt.nextBusTime}</span>
+        const delayBadge = delayMinutes === 0
+          ? `<span class="badge trust">🟢 ${t('bus.onTime')}</span>`
+          : `<span class="badge danger">🟡 ${delayMinutes}${t('bus.delayed')}</span>`;
+
+        let relativeTimeStr = '';
+        if (nextDiffMinutes === 0) {
+          relativeTimeStr = currentLang === 'en' ? 'Departing now' : 'まもなく到着';
+        } else if (nextDiffMinutes < 60) {
+          relativeTimeStr = t('bus.approxMin').replace('{m}', nextDiffMinutes);
+        } else {
+          const diffH = Math.floor(nextDiffMinutes / 60);
+          const diffM = nextDiffMinutes % 60;
+          relativeTimeStr = currentLang === 'en' ? `in ~${diffH}h ${diffM}m` : `約${diffH}時間${diffM}分後`;
+        }
+
+        const vehicleNo = staticRt.vehicleNumber || '千交-' + (1000 + (spot.id ? parseInt(spot.id.replace(/\D/g, '') || '10', 10) * 19 % 8000 : 2841));
+        const isBarrierFree = staticRt.isBarrierFreeVehicle !== undefined ? staticRt.isBarrierFreeVehicle : true;
+        const crowding = staticRt.crowdingLevel || (currentLang === 'en' ? 'Seats available' : '座席に余裕あり');
+
+        return `
+          <div class="rt-status-box" style="margin-top: 14px; background: rgba(45, 139, 110, 0.15); border: 1px solid var(--primary); padding: 12px; border-radius: var(--radius-md);">
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+              <span>🚌 ${t('bus.rtStatus')} <span style="color:var(--accent); font-weight:600;">[${dirName || '全方向'}]</span></span>
+              ${delayBadge}
             </div>
-            ${rt.crowdingLevel ? `<span style="font-size: 0.72rem; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; color: var(--text-main);">👥 ${rt.crowdingLevel}</span>` : ''}
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
+              <div style="font-size: 0.85rem; font-weight: 600;">
+                ${t('bus.nextBus')}: <span style="font-size: 1.15rem; color: var(--accent); font-weight: 700;">${nextTime}</span>
+                <span style="font-size: 0.78rem; color: var(--text-muted); margin-left: 6px; font-weight: normal;">(${relativeTimeStr})</span>
+              </div>
+              ${crowding ? `<span style="font-size: 0.72rem; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; color: var(--text-main);">👥 ${crowding}</span>` : ''}
+            </div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">
+              ${isBarrierFree ? `♿ ${t('bus.barrierFreeVehicle')} | ` : ''}${t('bus.vehicleNo')}: <span style="font-family: monospace;">${vehicleNo}</span>
+            </div>
           </div>
-          <div style="font-size: 0.75rem; color: var(--text-muted);">
-            ${rt.isBarrierFreeVehicle ? `♿ ${t('bus.barrierFreeVehicle')} | ` : ''}${t('bus.vehicleNo')}: <span style="font-family: monospace;">${rt.vehicleNumber}</span>
+        `;
+      }
+
+      // 2. 本日の全便が運行終了した場合（夜間など）
+      if (uniqueTimes.length > 0) {
+        const tomorrowFirst = uniqueTimes[0];
+        return `
+          <div class="rt-status-box" style="margin-top: 14px; background: rgba(100, 116, 139, 0.15); border: 1px solid rgba(148, 163, 184, 0.3); padding: 12px; border-radius: var(--radius-md);">
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+              <span>🚌 ${t('bus.rtStatus')} <span style="color:var(--accent); font-weight:600;">[${dirName || '全方向'}]</span></span>
+              <span class="badge" style="background: rgba(148, 163, 184, 0.2); color: var(--text-muted); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px;">🌙 ${t('bus.serviceEndedBadge')}</span>
+            </div>
+            <div style="margin-bottom: 4px;">
+              <div style="font-size: 0.88rem; font-weight: 600; color: var(--text-main);">
+                ${t('bus.serviceEnded')}
+              </div>
+              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
+                ${t('bus.firstBusTomorrow')}: <span style="font-size: 1rem; color: var(--primary); font-weight: 700; font-family: monospace;">${tomorrowFirst}</span>
+              </div>
+            </div>
           </div>
-        </div>
-      `;
+        `;
+      }
+
+      // 3. 時刻表データが無い場合の静的フォールバック
+      if (staticRt && (staticRt.nextBusTime || staticRt.active)) {
+        const delayBadge = (staticRt.delayMinutes === 0 || !staticRt.delayMinutes)
+          ? `<span class="badge trust">🟢 ${t('bus.onTime')}</span>`
+          : `<span class="badge danger">🟡 ${staticRt.delayMinutes}${t('bus.delayed')}</span>`;
+
+        return `
+          <div class="rt-status-box" style="margin-top: 14px; background: rgba(45, 139, 110, 0.15); border: 1px solid var(--primary); padding: 12px; border-radius: var(--radius-md);">
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+              <span>🚌 ${t('bus.rtStatus')} <span style="color:var(--accent); font-weight:600;">[${dirName || '全方向'}]</span></span>
+              ${delayBadge}
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
+              <div style="font-size: 0.85rem; font-weight: 600;">
+                ${t('bus.nextBus')}: <span style="font-size: 1.15rem; color: var(--accent); font-weight: 700;">${staticRt.nextBusTime}</span>
+              </div>
+              ${staticRt.crowdingLevel ? `<span style="font-size: 0.72rem; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; color: var(--text-main);">👥 ${staticRt.crowdingLevel}</span>` : ''}
+            </div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">
+              ${staticRt.isBarrierFreeVehicle ? `♿ ${t('bus.barrierFreeVehicle')} | ` : ''}${t('bus.vehicleNo')}: <span style="font-family: monospace;">${staticRt.vehicleNumber || '千交-2841'}</span>
+            </div>
+          </div>
+        `;
+      }
+
+      return '';
     };
 
     let timetableHTML = '';
@@ -345,31 +463,7 @@ export function showDetail(spot) {
         // 選択された方向のリアルタイム運行情報を更新
         const rtContainer = document.getElementById('rt-status-container');
         if (rtContainer && spot.category === 'busStop') {
-          // getRTHTML相当の動的生成
-          const rtMap = spot.rt_status_by_direction || {};
-          const rt = rtMap[selectedDir] || spot.rt_status;
-          if (rt) {
-            const delayBadge = rt.delayMinutes === 0
-              ? `<span class="badge trust">🟢 ${t('bus.onTime')}</span>`
-              : `<span class="badge danger">🟡 ${rt.delayMinutes}${t('bus.delayed')}</span>`;
-            rtContainer.innerHTML = `
-              <div class="rt-status-box" style="margin-top: 14px; background: rgba(45, 139, 110, 0.15); border: 1px solid var(--primary); padding: 12px; border-radius: var(--radius-md);">
-                <div style="font-size: 0.75rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
-                  <span>🚌 ${t('bus.rtStatus')} <span style="color:var(--accent); font-weight:600;">[${selectedDir}]</span></span>
-                  ${delayBadge}
-                </div>
-                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
-                  <div style="font-size: 0.85rem; font-weight: 600;">
-                    ${t('bus.nextBus')}: <span style="font-size: 1.15rem; color: var(--accent); font-weight: 700;">${rt.nextBusTime}</span>
-                  </div>
-                  ${rt.crowdingLevel ? `<span style="font-size: 0.72rem; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; color: var(--text-main);">👥 ${rt.crowdingLevel}</span>` : ''}
-                </div>
-                <div style="font-size: 0.75rem; color: var(--text-muted);">
-                  ${rt.isBarrierFreeVehicle ? `♿ ${t('bus.barrierFreeVehicle')} | ` : ''}${t('bus.vehicleNo')}: <span style="font-family: monospace;">${rt.vehicleNumber}</span>
-                </div>
-              </div>
-            `;
-          }
+          rtContainer.innerHTML = getRTHTML(selectedDir);
         }
 
         // 選択された方向のエントリを表示

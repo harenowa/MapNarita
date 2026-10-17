@@ -34,6 +34,10 @@
     "onTime": "On Time",
     "delayed": "min delay",
     "nextBus": "Next Arrival",
+    "serviceEnded": "Service ended for today",
+    "serviceEndedBadge": "Ended",
+    "firstBusTomorrow": "Tomorrow First",
+    "approxMin": "in ~{m} min",
     "barrierFreeVehicle": "Non-step / Accessible Bus",
     "vehicleNo": "Vehicle ID"
   },
