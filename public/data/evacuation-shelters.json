@@ -1,10 +1,686 @@
 [
   {
     "id": "shelter_001",
-    "name": "成田市役所",
+    "name": "成田市役所（本庁舎）",
+    "name_en": "Narita City Hall",
+    "address": "千葉県成田市花崎町760",
+    "address_en": "760 Hanazakicho, Narita",
     "lat": 35.7764,
     "lng": 140.3178,
-    "address": "成田市花崎町760",
+    "types": [
+      "earthquake",
+      "fire",
+      "flood"
+    ],
+    "capacity": 1200,
+    "details": {
+      "facilityType": "市役所本庁舎・災害対策拠点",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "災害対策本部",
+        "自家発電設備",
+        "衛星通信",
+        "受水槽",
+        "多目的トイレ",
+        "AED",
+        "車いす対応"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_002",
+    "name": "公津の杜コミュニティセンター（もりんぴあこうづ）",
+    "name_en": "Morinpia Kozu Community Center",
+    "address": "千葉県成田市公津の杜4-8",
+    "address_en": "4-8 Kozunomori, Narita",
+    "lat": 35.75785,
+    "lng": 140.29454,
+    "types": [
+      "earthquake",
+      "fire",
+      "flood"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "地域コミュニティ施設・早期開設避難所",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "冷暖房設備",
+        "多目的トイレ",
+        "授乳室",
+        "AED",
+        "エレベーター",
+        "Wi-Fi"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true,
+      "nursingRoom": true
+    }
+  },
+  {
+    "id": "shelter_003",
+    "name": "成田高等学校 （講堂兼体育館、グラウンド）",
+    "name_en": "成田高等学校 (Designated Shelter)",
+    "address": "千葉県成田市成田２７",
+    "address_en": "成田２７, Narita, Chiba",
+    "lat": 35.78529,
+    "lng": 140.32208,
+    "types": [
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 800,
+    "details": {
+      "facilityType": "高等学校（体育館・グラウンド）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_004",
+    "name": "成田小学校（体育館・校庭）",
+    "name_en": "成田小学校 (Designated Shelter)",
+    "address": "千葉県成田市幸町９４８－１",
+    "address_en": "幸町９４８－１, Narita, Chiba",
+    "lat": 35.78329,
+    "lng": 140.31345,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_005",
+    "name": "成田国際文化会館",
+    "name_en": "成田国際文化会館 (Designated Shelter)",
+    "address": "千葉県成田市土屋３０３",
+    "address_en": "土屋３０３, Narita, Chiba",
+    "lat": 35.78881,
+    "lng": 140.32123,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "公共施設・広域避難場所",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "冷暖房設備",
+        "バリアフリートイレ"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_006",
+    "name": "成田中学校（体育館・校庭）",
+    "name_en": "成田中学校 (Designated Shelter)",
+    "address": "千葉県成田市土屋９２８－１",
+    "address_en": "土屋９２８－１, Narita, Chiba",
+    "lat": 35.78814,
+    "lng": 140.31482,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 700,
+    "details": {
+      "facilityType": "中学校（体育館・グラウンド）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_007",
+    "name": "美郷台小学校（体育館・校庭）",
+    "name_en": "美郷台小学校 (Designated Shelter)",
+    "address": "千葉県成田市美郷台２－１９－１",
+    "address_en": "美郷台２－１９－１, Narita, Chiba",
+    "lat": 35.79584,
+    "lng": 140.30789,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_008",
+    "name": "印東体育館",
+    "name_en": "印東体育館 (Designated Shelter)",
+    "address": "千葉県成田市船形１８６ー２",
+    "address_en": "船形１８６ー２, Narita, Chiba",
+    "lat": 35.78571,
+    "lng": 140.26776,
+    "types": [
+      "sediment",
+      "earthquake",
+      "fire",
+      "flood"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "体育館・運動施設",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_009",
+    "name": "公津小学校（体育館・校庭）",
+    "name_en": "公津小学校 (Designated Shelter)",
+    "address": "千葉県成田市台方８５１",
+    "address_en": "台方８５１, Narita, Chiba",
+    "lat": 35.76652,
+    "lng": 140.28276,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_010",
+    "name": "平成小学校（体育館・校庭）",
+    "name_en": "平成小学校 (Designated Shelter)",
+    "address": "千葉県成田市飯仲５０－１",
+    "address_en": "飯仲５０－１, Narita, Chiba",
+    "lat": 35.75753,
+    "lng": 140.30173,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_011",
+    "name": "公津の杜小学校（体育館・校庭）",
+    "name_en": "公津の杜小学校 (Designated Shelter)",
+    "address": "千葉県成田市公津の杜３－２",
+    "address_en": "公津の杜３－２, Narita, Chiba",
+    "lat": 35.75672,
+    "lng": 140.29443,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_012",
+    "name": "公津の杜中学校（体育館・校庭）",
+    "name_en": "公津の杜中学校 (Designated Shelter)",
+    "address": "千葉県成田市公津の杜５－２９",
+    "address_en": "公津の杜５－２９, Narita, Chiba",
+    "lat": 35.7566,
+    "lng": 140.28668,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 700,
+    "details": {
+      "facilityType": "中学校（体育館・グラウンド）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_013",
+    "name": "成田西陵高等学校 （体育館・屋外運動場）",
+    "name_en": "成田西陵高等学校 (Designated Shelter)",
+    "address": "千葉県成田市松崎２０",
+    "address_en": "松崎２０, Narita, Chiba",
+    "lat": 35.8109,
+    "lng": 140.28616,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 800,
+    "details": {
+      "facilityType": "高等学校（体育館・グラウンド）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_014",
+    "name": "八生小学校（体育館・校庭）",
+    "name_en": "八生小学校 (Designated Shelter)",
+    "address": "千葉県成田市松崎１４６８",
+    "address_en": "松崎１４６８, Narita, Chiba",
+    "lat": 35.80429,
+    "lng": 140.29179,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_015",
+    "name": "中郷ふるさと交流館（体育館・運動場）",
+    "name_en": "中郷ふるさと交流館 (Designated Shelter)",
+    "address": "千葉県成田市赤荻１５７４",
+    "address_en": "赤荻１５７４, Narita, Chiba",
+    "lat": 35.80988,
+    "lng": 140.33052,
+    "types": [
+      "sediment",
+      "earthquake",
+      "fire",
+      "flood"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "体育館・運動施設",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_016",
+    "name": "Ready To Flight! NARITA（グラウンド）",
+    "name_en": "Ready To Flight! NARITA (Designated Shelter)",
+    "address": "千葉県成田市大室680",
+    "address_en": "大室680, Narita, Chiba",
+    "lat": 35.83431,
+    "lng": 140.37503,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "公共施設・広域避難場所",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_017",
+    "name": "久住体育館",
+    "name_en": "久住体育館 (Designated Shelter)",
+    "address": "千葉県成田市幡谷９２２－６",
+    "address_en": "幡谷９２２－６, Narita, Chiba",
+    "lat": 35.83295,
+    "lng": 140.34232,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "体育館・運動施設",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_018",
+    "name": "久住小学校（体育館・校庭）",
+    "name_en": "久住小学校 (Designated Shelter)",
+    "address": "千葉県成田市久住中央３－１２－１",
+    "address_en": "久住中央３－１２－１, Narita, Chiba",
+    "lat": 35.83692,
+    "lng": 140.33968,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_019",
+    "name": "久住中学校（体育館・校庭）",
+    "name_en": "久住中学校 (Designated Shelter)",
+    "address": "千葉県成田市久住中央２－１",
+    "address_en": "久住中央２－１, Narita, Chiba",
+    "lat": 35.83398,
+    "lng": 140.34135,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 700,
+    "details": {
+      "facilityType": "中学校（体育館・グラウンド）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_020",
+    "name": "豊住ふれあい健康館（体育館・運動場）",
+    "name_en": "豊住ふれあい健康館 (Designated Shelter)",
+    "address": "千葉県成田市北羽鳥１９７５－３",
+    "address_en": "北羽鳥１９７５－３, Narita, Chiba",
+    "lat": 35.85286,
+    "lng": 140.2948,
+    "types": [
+      "flood",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "体育館・運動施設",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_021",
+    "name": "豊住小学校（体育館・校庭）",
+    "name_en": "豊住小学校 (Designated Shelter)",
+    "address": "千葉県成田市北羽鳥１９８５－２",
+    "address_en": "北羽鳥１９８５－２, Narita, Chiba",
+    "lat": 35.85286,
+    "lng": 140.2948,
     "types": [
       "flood",
       "earthquake",
@@ -12,861 +688,1332 @@
     ],
     "capacity": 600,
     "details": {
-      "facilityType": "市役所",
-      "openHours": "災害発生時",
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
       "equipment": [
-        "トイレ",
-        "備蓄倉庫"
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
       ]
     },
     "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
     "accessibility": {
       "wheelchair": true,
       "toilet": true
-    },
-    "name_en": "成田市役所 (Evacuation Shelter)",
-    "address_en": "成田市花崎町760"
-  },
-  {
-    "id": "shelter_002",
-    "name": "成田市文化芸術センタースカイタウンホール",
-    "lat": 35.7861,
-    "lng": 140.3289,
-    "address": "成田市玉造1-6",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 800,
-    "details": {
-      "facilityType": "文化施設",
-      "openHours": "災害発生時",
-      "equipment": [
-        "トイレ",
-        "冷暖房",
-        "バリアフリー対応"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市文化芸術センタースカイタウンホール (Evacuation Shelter)",
-    "address_en": "成田市玉造1-6"
-  },
-  {
-    "id": "shelter_003",
-    "name": "成田国際高等学校",
-    "lat": 35.7708,
-    "lng": 140.3345,
-    "address": "成田市郷部1-1",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 1200,
-    "details": {
-      "facilityType": "高等学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館",
-        "グラウンド",
-        "トイレ"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田国際高等学校 (Evacuation Shelter)",
-    "address_en": "成田市郷部1-1"
-  },
-  {
-    "id": "shelter_004",
-    "name": "成田市立成田小学校",
-    "lat": 35.7773,
-    "lng": 140.3216,
-    "address": "成田市幸町406",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 900,
-    "details": {
-      "facilityType": "小学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館",
-        "グラウンド"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立成田小学校 (Evacuation Shelter)",
-    "address_en": "成田市幸町406"
-  },
-  {
-    "id": "shelter_005",
-    "name": "成田市立公津の杜小学校",
-    "lat": 35.7955,
-    "lng": 140.3489,
-    "address": "成田市公津の杜3-1",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 800,
-    "details": {
-      "facilityType": "小学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館",
-        "グラウンド"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立公津の杜小学校 (Evacuation Shelter)",
-    "address_en": "成田市公津の杜3-1"
-  },
-  {
-    "id": "shelter_006",
-    "name": "成田市立成田中学校",
-    "lat": 35.775,
-    "lng": 140.3165,
-    "address": "成田市田町295",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 1000,
-    "details": {
-      "facilityType": "中学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館",
-        "グラウンド",
-        "トイレ"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立成田中学校 (Evacuation Shelter)",
-    "address_en": "成田市田町295"
-  },
-  {
-    "id": "shelter_007",
-    "name": "成田市保健福祉館",
-    "lat": 35.7733,
-    "lng": 140.3111,
-    "address": "成田市玉造5-11",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 400,
-    "details": {
-      "facilityType": "福祉施設",
-      "openHours": "災害発生時",
-      "equipment": [
-        "バリアフリー対応",
-        "冷暖房",
-        "トイレ"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市保健福祉館 (Evacuation Shelter)",
-    "address_en": "成田市玉造5-11"
-  },
-  {
-    "id": "shelter_008",
-    "name": "成田市立大栄小学校",
-    "lat": 35.7436,
-    "lng": 140.4002,
-    "address": "成田市大室1678",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 600,
-    "details": {
-      "facilityType": "小学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館",
-        "グラウンド"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立大栄小学校 (Evacuation Shelter)",
-    "address_en": "成田市大室1678"
-  },
-  {
-    "id": "shelter_009",
-    "name": "成田市立下総小学校",
-    "lat": 35.7289,
-    "lng": 140.2584,
-    "address": "成田市不動ヶ岡1897",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 600,
-    "details": {
-      "facilityType": "小学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館",
-        "グラウンド"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立下総小学校 (Evacuation Shelter)",
-    "address_en": "成田市不動ヶ岡1897"
-  },
-  {
-    "id": "shelter_010",
-    "name": "成田市立久住小学校",
-    "lat": 35.7962,
-    "lng": 140.2634,
-    "address": "成田市久住2014",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 500,
-    "details": {
-      "facilityType": "小学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立久住小学校 (Evacuation Shelter)",
-    "address_en": "成田市久住2014"
-  },
-  {
-    "id": "shelter_011",
-    "name": "成田市立豊住小学校",
-    "lat": 35.8134,
-    "lng": 140.3701,
-    "address": "成田市北羽鳥3-3-2",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 600,
-    "details": {
-      "facilityType": "小学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館",
-        "グラウンド"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立豊住小学校 (Evacuation Shelter)",
-    "address_en": "成田市北羽鳥3-3-2"
-  },
-  {
-    "id": "shelter_012",
-    "name": "成田市立赤坂小学校",
-    "lat": 35.7831,
-    "lng": 140.3598,
-    "address": "成田市赤坂3-5-1",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 700,
-    "details": {
-      "facilityType": "小学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館",
-        "グラウンド"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立赤坂小学校 (Evacuation Shelter)",
-    "address_en": "成田市赤坂3-5-1"
-  },
-  {
-    "id": "shelter_013",
-    "name": "成田市立八生小学校",
-    "lat": 35.7614,
-    "lng": 140.3789,
-    "address": "成田市本城50",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 500,
-    "details": {
-      "facilityType": "小学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立八生小学校 (Evacuation Shelter)",
-    "address_en": "成田市本城50"
-  },
-  {
-    "id": "shelter_014",
-    "name": "成田市立成田西小学校",
-    "lat": 35.789,
-    "lng": 140.3001,
-    "address": "成田市玉造4-16",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 700,
-    "details": {
-      "facilityType": "小学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館",
-        "グラウンド"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立成田西小学校 (Evacuation Shelter)",
-    "address_en": "成田市玉造4-16"
-  },
-  {
-    "id": "shelter_015",
-    "name": "成田市立向台小学校",
-    "lat": 35.7921,
-    "lng": 140.3201,
-    "address": "成田市ニュータウン4-1",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 800,
-    "details": {
-      "facilityType": "小学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館",
-        "グラウンド"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立向台小学校 (Evacuation Shelter)",
-    "address_en": "成田市ニュータウン4-1"
-  },
-  {
-    "id": "shelter_016",
-    "name": "成田市立吾妻小学校",
-    "lat": 35.8045,
-    "lng": 140.3356,
-    "address": "成田市吾妻1-12",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 650,
-    "details": {
-      "facilityType": "小学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立吾妻小学校 (Evacuation Shelter)",
-    "address_en": "成田市吾妻1-12"
-  },
-  {
-    "id": "shelter_017",
-    "name": "成田市立三里塚小学校",
-    "lat": 35.7693,
-    "lng": 140.3912,
-    "address": "成田市三里塚御料712",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 600,
-    "details": {
-      "facilityType": "小学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立三里塚小学校 (Evacuation Shelter)",
-    "address_en": "成田市三里塚御料712"
-  },
-  {
-    "id": "shelter_018",
-    "name": "成田市立遠山小学校",
-    "lat": 35.752,
-    "lng": 140.329,
-    "address": "成田市遠山536",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 500,
-    "details": {
-      "facilityType": "小学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立遠山小学校 (Evacuation Shelter)",
-    "address_en": "成田市遠山536"
-  },
-  {
-    "id": "shelter_019",
-    "name": "成田市体育館",
-    "lat": 35.7817,
-    "lng": 140.309,
-    "address": "成田市郷部927-1",
-    "types": [
-      "flood",
-      "earthquake",
-      "large_scale"
-    ],
-    "capacity": 2000,
-    "details": {
-      "facilityType": "体育館",
-      "openHours": "災害発生時",
-      "equipment": [
-        "大規模収容可",
-        "バリアフリー対応",
-        "シャワー室",
-        "トイレ"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市体育館 (Evacuation Shelter)",
-    "address_en": "成田市郷部927-1"
-  },
-  {
-    "id": "shelter_020",
-    "name": "成田市立大栄中学校",
-    "lat": 35.7401,
-    "lng": 140.3978,
-    "address": "成田市大室2048",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 800,
-    "details": {
-      "facilityType": "中学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館",
-        "グラウンド"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立大栄中学校 (Evacuation Shelter)",
-    "address_en": "成田市大室2048"
-  },
-  {
-    "id": "shelter_021",
-    "name": "成田市立下総中学校",
-    "lat": 35.7283,
-    "lng": 140.2578,
-    "address": "成田市不動ヶ岡1981",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 700,
-    "details": {
-      "facilityType": "中学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立下総中学校 (Evacuation Shelter)",
-    "address_en": "成田市不動ヶ岡1981"
+    }
   },
   {
     "id": "shelter_022",
-    "name": "成田市立久住中学校",
-    "lat": 35.7978,
-    "lng": 140.2612,
-    "address": "成田市久住2015",
+    "name": "遠山小学校（体育館・校庭）",
+    "name_en": "遠山小学校 (Designated Shelter)",
+    "address": "千葉県成田市小菅１４１１",
+    "address_en": "小菅１４１１, Narita, Chiba",
+    "lat": 35.7709,
+    "lng": 140.35525,
     "types": [
       "flood",
-      "earthquake"
+      "sediment",
+      "earthquake",
+      "fire"
     ],
     "capacity": 600,
     "details": {
-      "facilityType": "中学校",
-      "openHours": "災害発生時",
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
       "equipment": [
-        "体育館"
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
       ]
     },
     "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
     "accessibility": {
       "wheelchair": true,
       "toilet": true
-    },
-    "name_en": "成田市立久住中学校 (Evacuation Shelter)",
-    "address_en": "成田市久住2015"
+    }
   },
   {
     "id": "shelter_023",
-    "name": "千葉県立成田高等学校",
-    "lat": 35.7669,
-    "lng": 140.3129,
-    "address": "成田市西三谷981",
+    "name": "遠山中学校（体育館・校庭）",
+    "name_en": "遠山中学校 (Designated Shelter)",
+    "address": "千葉県成田市大清水１９",
+    "address_en": "大清水１９, Narita, Chiba",
+    "lat": 35.76592,
+    "lng": 140.35513,
     "types": [
       "flood",
-      "earthquake"
+      "sediment",
+      "earthquake",
+      "fire"
     ],
-    "capacity": 1500,
+    "capacity": 700,
     "details": {
-      "facilityType": "高等学校",
-      "openHours": "災害発生時",
+      "facilityType": "中学校（体育館・グラウンド）",
+      "openHours": "災害発生時・警戒発令時",
       "equipment": [
-        "体育館",
-        "グラウンド"
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
       ]
     },
     "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
     "accessibility": {
       "wheelchair": true,
       "toilet": true
-    },
-    "name_en": "千葉県立成田高等学校 (Evacuation Shelter)",
-    "address_en": "成田市西三谷981"
+    }
   },
   {
     "id": "shelter_024",
-    "name": "成田市立公津の杜中学校",
-    "lat": 35.8013,
-    "lng": 140.3423,
-    "address": "成田市公津の杜4-3-1",
+    "name": "三里塚小学校（体育館・校庭）",
+    "name_en": "三里塚小学校 (Designated Shelter)",
+    "address": "千葉県成田市本三里塚１５３－１",
+    "address_en": "本三里塚１５３－１, Narita, Chiba",
+    "lat": 35.75217,
+    "lng": 140.37302,
     "types": [
       "flood",
-      "earthquake"
-    ],
-    "capacity": 900,
-    "details": {
-      "facilityType": "中学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館",
-        "グラウンド"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立公津の杜中学校 (Evacuation Shelter)",
-    "address_en": "成田市公津の杜4-3-1"
-  },
-  {
-    "id": "shelter_025",
-    "name": "成田市農業センター",
-    "lat": 35.7598,
-    "lng": 140.3651,
-    "address": "成田市三里塚1-1",
-    "types": [
-      "earthquake"
-    ],
-    "capacity": 300,
-    "details": {
-      "facilityType": "農業施設",
-      "openHours": "災害発生時",
-      "equipment": [
-        "大ホール",
-        "トイレ"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市農業センター (Evacuation Shelter)",
-    "address_en": "成田市三里塚1-1"
-  },
-  {
-    "id": "shelter_026",
-    "name": "成田市立下総運動公園",
-    "lat": 35.721,
-    "lng": 140.256,
-    "address": "成田市中台1-4-1",
-    "types": [
+      "sediment",
       "earthquake",
-      "large_scale"
-    ],
-    "capacity": 3000,
-    "details": {
-      "facilityType": "運動公園",
-      "openHours": "災害発生時",
-      "equipment": [
-        "グラウンド",
-        "屋外広場",
-        "トイレ"
-      ]
-    },
-    "note": "広域避難場所",
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立下総運動公園 (Evacuation Shelter)",
-    "address_en": "成田市中台1-4-1"
-  },
-  {
-    "id": "shelter_027",
-    "name": "成田空港公園",
-    "lat": 35.7719,
-    "lng": 140.3857,
-    "address": "成田市三里塚御料地内",
-    "types": [
-      "large_scale"
-    ],
-    "capacity": 5000,
-    "details": {
-      "facilityType": "公園",
-      "openHours": "災害発生時",
-      "equipment": [
-        "広場",
-        "トイレ"
-      ]
-    },
-    "note": "広域避難場所",
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田空港公園 (Evacuation Shelter)",
-    "address_en": "成田市三里塚御料地内"
-  },
-  {
-    "id": "shelter_028",
-    "name": "成田市立北中学校",
-    "lat": 35.8176,
-    "lng": 140.352,
-    "address": "成田市北羽鳥5-3",
-    "types": [
-      "flood",
-      "earthquake"
-    ],
-    "capacity": 800,
-    "details": {
-      "facilityType": "中学校",
-      "openHours": "災害発生時",
-      "equipment": [
-        "体育館",
-        "グラウンド"
-      ]
-    },
-    "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
-    "accessibility": {
-      "wheelchair": true,
-      "toilet": true
-    },
-    "name_en": "成田市立北中学校 (Evacuation Shelter)",
-    "address_en": "成田市北羽鳥5-3"
-  },
-  {
-    "id": "shelter_029",
-    "name": "成田市立中台小学校",
-    "lat": 35.7278,
-    "lng": 140.2602,
-    "address": "成田市中台2-4-1",
-    "types": [
-      "flood",
-      "earthquake"
+      "fire"
     ],
     "capacity": 600,
     "details": {
-      "facilityType": "小学校",
-      "openHours": "災害発生時",
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
       "equipment": [
-        "体育館"
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
       ]
     },
     "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
     "accessibility": {
       "wheelchair": true,
       "toilet": true
-    },
-    "name_en": "成田市立中台小学校 (Evacuation Shelter)",
-    "address_en": "成田市中台2-4-1"
+    }
   },
   {
-    "id": "shelter_030",
-    "name": "成田市立滑河小学校",
-    "lat": 35.7095,
-    "lng": 140.3234,
-    "address": "成田市名古屋1-1",
+    "id": "shelter_025",
+    "name": "本城小学校（体育館・校庭）",
+    "name_en": "本城小学校 (Designated Shelter)",
+    "address": "千葉県成田市本城１７８－１",
+    "address_en": "本城１７８－１, Narita, Chiba",
+    "lat": 35.73537,
+    "lng": 140.36548,
     "types": [
       "flood",
-      "earthquake"
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_026",
+    "name": "成田エアポート東雲パークゴルフ場（体育館・グラウンド）",
+    "name_en": "成田エアポート東雲パークゴルフ場 (Designated Shelter)",
+    "address": "千葉県成田市堀之内３９２－４",
+    "address_en": "堀之内３９２－４, Narita, Chiba",
+    "lat": 35.79115,
+    "lng": 140.37752,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
     ],
     "capacity": 500,
     "details": {
-      "facilityType": "小学校",
-      "openHours": "災害発生時",
+      "facilityType": "体育館・運動施設",
+      "openHours": "災害発生時・警戒発令時",
       "equipment": [
-        "体育館"
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
       ]
     },
     "category": "evacuation",
-    "source": "narita_city_official",
-    "trustScore": 0.9,
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
     "accessibility": {
       "wheelchair": true,
       "toilet": true
+    }
+  },
+  {
+    "id": "shelter_027",
+    "name": "中央公民館",
+    "name_en": "中央公民館 (Designated Shelter)",
+    "address": "千葉県成田市赤坂１－１－３",
+    "address_en": "赤坂１－１－３, Narita, Chiba",
+    "lat": 35.77927,
+    "lng": 140.29224,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "公民館・地域交流施設",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "冷暖房設備",
+        "バリアフリートイレ"
+      ]
     },
-    "name_en": "成田市立滑河小学校 (Evacuation Shelter)",
-    "address_en": "成田市名古屋1-1"
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_028",
+    "name": "吾妻中学校（体育館・校庭）",
+    "name_en": "吾妻中学校 (Designated Shelter)",
+    "address": "千葉県成田市吾妻１－２４",
+    "address_en": "吾妻１－２４, Narita, Chiba",
+    "lat": 35.78005,
+    "lng": 140.28648,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 700,
+    "details": {
+      "facilityType": "中学校（体育館・グラウンド）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_029",
+    "name": "吾妻小学校（体育館・校庭）",
+    "name_en": "吾妻小学校 (Designated Shelter)",
+    "address": "千葉県成田市吾妻２－６",
+    "address_en": "吾妻２－６, Narita, Chiba",
+    "lat": 35.78373,
+    "lng": 140.28601,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_030",
+    "name": "成田国際高等学校 （体育館・屋外運動場）",
+    "name_en": "成田国際高等学校 (Designated Shelter)",
+    "address": "千葉県成田市加良部３－１６",
+    "address_en": "加良部３－１６, Narita, Chiba",
+    "lat": 35.77764,
+    "lng": 140.30566,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 800,
+    "details": {
+      "facilityType": "高等学校（体育館・グラウンド）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_031",
+    "name": "新山小学校（体育館・校庭）",
+    "name_en": "新山小学校 (Designated Shelter)",
+    "address": "千葉県成田市加良部４－２３",
+    "address_en": "加良部４－２３, Narita, Chiba",
+    "lat": 35.77385,
+    "lng": 140.30046,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_032",
+    "name": "西中学校（体育館・校庭）",
+    "name_en": "西中学校 (Designated Shelter)",
+    "address": "千葉県成田市加良部５－１１",
+    "address_en": "加良部５－１１, Narita, Chiba",
+    "lat": 35.77381,
+    "lng": 140.29547,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 700,
+    "details": {
+      "facilityType": "中学校（体育館・グラウンド）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_033",
+    "name": "加良部小学校（体育館・校庭）",
+    "name_en": "加良部小学校 (Designated Shelter)",
+    "address": "千葉県成田市加良部６－８",
+    "address_en": "加良部６－８, Narita, Chiba",
+    "lat": 35.77602,
+    "lng": 140.29542,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_034",
+    "name": "橋賀台小学校（体育館・校庭）",
+    "name_en": "橋賀台小学校 (Designated Shelter)",
+    "address": "千葉県成田市橋賀台３－４",
+    "address_en": "橋賀台３－４, Narita, Chiba",
+    "lat": 35.77281,
+    "lng": 140.28975,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_035",
+    "name": "玉造小学校（体育館・校庭）",
+    "name_en": "玉造小学校 (Designated Shelter)",
+    "address": "千葉県成田市玉造３－４",
+    "address_en": "玉造３－４, Narita, Chiba",
+    "lat": 35.79247,
+    "lng": 140.28685,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_036",
+    "name": "玉造中学校（体育館・校庭）",
+    "name_en": "玉造中学校 (Designated Shelter)",
+    "address": "千葉県成田市玉造３－７",
+    "address_en": "玉造３－７, Narita, Chiba",
+    "lat": 35.79012,
+    "lng": 140.28679,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 700,
+    "details": {
+      "facilityType": "中学校（体育館・グラウンド）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_037",
+    "name": "成田北高等学校（体育館・屋外運動場）",
+    "name_en": "成田北高等学校 (Designated Shelter)",
+    "address": "千葉県成田市玉造５－１",
+    "address_en": "玉造５－１, Narita, Chiba",
+    "lat": 35.7949,
+    "lng": 140.2944,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 800,
+    "details": {
+      "facilityType": "高等学校（体育館・グラウンド）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_038",
+    "name": "神宮寺小学校（体育館・校庭）",
+    "name_en": "神宮寺小学校 (Designated Shelter)",
+    "address": "千葉県成田市玉造５－２８",
+    "address_en": "玉造５－２８, Narita, Chiba",
+    "lat": 35.79288,
+    "lng": 140.29254,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_039",
+    "name": "中台小学校（体育館・校庭）",
+    "name_en": "中台小学校 (Designated Shelter)",
+    "address": "千葉県成田市中台１－４",
+    "address_en": "中台１－４, Narita, Chiba",
+    "lat": 35.78485,
+    "lng": 140.29106,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_040",
+    "name": "向台小学校（体育館・校庭）",
+    "name_en": "向台小学校 (Designated Shelter)",
+    "address": "千葉県成田市中台３－６",
+    "address_en": "中台３－６, Narita, Chiba",
+    "lat": 35.78226,
+    "lng": 140.30083,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_041",
+    "name": "中台中学校（体育館・校庭）",
+    "name_en": "中台中学校 (Designated Shelter)",
+    "address": "千葉県成田市中台４－２",
+    "address_en": "中台４－２, Narita, Chiba",
+    "lat": 35.78286,
+    "lng": 140.2979,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 700,
+    "details": {
+      "facilityType": "中学校（体育館・グラウンド）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_042",
+    "name": "重兵衛スポーツフィールド中台（中台運動公園）",
+    "name_en": "重兵衛スポーツフィールド中台 (Designated Shelter)",
+    "address": "千葉県成田市中台５－２",
+    "address_en": "中台５－２, Narita, Chiba",
+    "lat": 35.78005,
+    "lng": 140.30556,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "体育館・運動施設",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_043",
+    "name": "滑河運動施設（体育館・グラウンド）",
+    "name_en": "滑河運動施設 (Designated Shelter)",
+    "address": "千葉県成田市滑川１１４２",
+    "address_en": "滑川１１４２, Narita, Chiba",
+    "lat": 35.86665,
+    "lng": 140.34253,
+    "types": [
+      "sediment",
+      "earthquake",
+      "fire",
+      "flood"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "体育館・運動施設",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_044",
+    "name": "高岡運動施設（体育館・グラウンド）",
+    "name_en": "高岡運動施設 (Designated Shelter)",
+    "address": "千葉県成田市大和田１５１",
+    "address_en": "大和田１５１, Narita, Chiba",
+    "lat": 35.88028,
+    "lng": 140.3611,
+    "types": [
+      "earthquake",
+      "fire",
+      "flood"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "体育館・運動施設",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_045",
+    "name": "ネクスト名木小（校庭）",
+    "name_en": "ネクスト名木小 (Designated Shelter)",
+    "address": "千葉県成田市名木1159",
+    "address_en": "名木1159, Narita, Chiba",
+    "lat": 35.87111,
+    "lng": 140.3922,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "公共施設・広域避難場所",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_046",
+    "name": "旧小御門小学校（校庭）",
+    "name_en": "旧小御門小学校 (Designated Shelter)",
+    "address": "千葉県成田市名古屋1077",
+    "address_en": "名古屋1077, Narita, Chiba",
+    "lat": 35.85582,
+    "lng": 140.36652,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_047",
+    "name": "下総みどり学園（体育館・校庭）",
+    "name_en": "下総みどり学園 (Designated Shelter)",
+    "address": "千葉県成田市名古屋１２１４",
+    "address_en": "名古屋１２１４, Narita, Chiba",
+    "lat": 35.86307,
+    "lng": 140.35969,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "体育館・運動施設",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_048",
+    "name": "下総高等学校（体育館・屋外運動場）",
+    "name_en": "下総高等学校 (Designated Shelter)",
+    "address": "千葉県成田市名古屋２４７",
+    "address_en": "名古屋２４７, Narita, Chiba",
+    "lat": 35.85918,
+    "lng": 140.35735,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 800,
+    "details": {
+      "facilityType": "高等学校（体育館・グラウンド）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_049",
+    "name": "下総運動公園（野球場・運動広場）",
+    "name_en": "下総運動公園 (Designated Shelter)",
+    "address": "千葉県成田市滑川130-1",
+    "address_en": "滑川130-1, Narita, Chiba",
+    "lat": 35.86538,
+    "lng": 140.33885,
+    "types": [
+      "flood",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "公共施設・広域避難場所",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_050",
+    "name": "下総公民館",
+    "name_en": "下総公民館 (Designated Shelter)",
+    "address": "千葉県成田市高岡１４３５",
+    "address_en": "高岡１４３５, Narita, Chiba",
+    "lat": 35.87432,
+    "lng": 140.35611,
+    "types": [
+      "flood",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "公民館・地域交流施設",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "冷暖房設備",
+        "バリアフリートイレ"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_051",
+    "name": "大須賀運動施設（体育館・グラウンド）",
+    "name_en": "大須賀運動施設 (Designated Shelter)",
+    "address": "千葉県成田市伊能５４７",
+    "address_en": "伊能５４７, Narita, Chiba",
+    "lat": 35.83892,
+    "lng": 140.4326,
+    "types": [
+      "flood",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "体育館・運動施設",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_052",
+    "name": "大栄みらい学園（体育館・校庭）",
+    "name_en": "大栄みらい学園 (Designated Shelter)",
+    "address": "千葉県成田市伊能１２５",
+    "address_en": "伊能１２５, Narita, Chiba",
+    "lat": 35.8324,
+    "lng": 140.42651,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "体育館・運動施設",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_053",
+    "name": "桜田小学校（体育館・グラウンド）",
+    "name_en": "桜田小学校 (Designated Shelter)",
+    "address": "千葉県成田市桜田９４１",
+    "address_en": "桜田９４１, Narita, Chiba",
+    "lat": 35.84473,
+    "lng": 140.45064,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_054",
+    "name": "津富浦小学校（体育館・グラウンド）",
+    "name_en": "津富浦小学校 (Designated Shelter)",
+    "address": "千葉県成田市津富浦１０９３",
+    "address_en": "津富浦１０９３, Narita, Chiba",
+    "lat": 35.83247,
+    "lng": 140.41344,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_055",
+    "name": "大栄B＆G海洋センター",
+    "name_en": "大栄B＆G海洋センター (Designated Shelter)",
+    "address": "千葉県成田市一坪田３８８",
+    "address_en": "一坪田３８８, Narita, Chiba",
+    "lat": 35.81685,
+    "lng": 140.42165,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "公共施設・広域避難場所",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "冷暖房設備",
+        "バリアフリートイレ"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_056",
+    "name": "大栄公民館",
+    "name_en": "大栄公民館 (Designated Shelter)",
+    "address": "千葉県成田市松子３９３",
+    "address_en": "松子３９３, Narita, Chiba",
+    "lat": 35.83184,
+    "lng": 140.41884,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "公民館・地域交流施設",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "冷暖房設備",
+        "バリアフリートイレ"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_057",
+    "name": "前林運動施設（体育館・グラウンド）",
+    "name_en": "前林運動施設 (Designated Shelter)",
+    "address": "千葉県成田市前林４３０",
+    "address_en": "前林４３０, Narita, Chiba",
+    "lat": 35.80229,
+    "lng": 140.43527,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "体育館・運動施設",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_058",
+    "name": "川上小学校（体育館・グラウンド）",
+    "name_en": "川上小学校 (Designated Shelter)",
+    "address": "千葉県成田市多良貝２４５－３０８",
+    "address_en": "多良貝２４５－３０８, Narita, Chiba",
+    "lat": 35.80047,
+    "lng": 140.40681,
+    "types": [
+      "flood",
+      "sediment",
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 600,
+    "details": {
+      "facilityType": "小学校（体育館・校庭）",
+      "openHours": "災害発生時・警戒発令時",
+      "equipment": [
+        "屋内避難スペース",
+        "受水槽",
+        "非常用電源",
+        "AED",
+        "校庭・屋外避難スペース"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市公式オープンデータ",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_059",
+    "name": "栗山近隣公園（広域避難場所）",
+    "name_en": "Kuriyama Neighborhood Park (Open Evacuation Area)",
+    "address": "千葉県成田市花崎町749-1",
+    "address_en": "749-1 Hanazakicho, Narita",
+    "lat": 35.7725,
+    "lng": 140.3221,
+    "types": [
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 3000,
+    "details": {
+      "facilityType": "広域避難場所・公園",
+      "openHours": "終日開放・災害時一時集合",
+      "equipment": [
+        "広大な広場",
+        "耐震性貯水槽",
+        "非常用トイレ",
+        "ソーラー照明",
+        "かまどベンチ"
+      ]
+    },
+    "category": "evacuation",
+    "source": "成田市防災計画・指定緊急避難場所",
+    "trustScore": 0.95,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true
+    }
+  },
+  {
+    "id": "shelter_060",
+    "name": "成田赤十字病院（地域災害拠点病院）",
+    "name_en": "Japanese Red Cross Narita Hospital (Disaster Medical Center)",
+    "address": "千葉県成田市飯田町90-1",
+    "address_en": "90-1 Iidacho, Narita",
+    "lat": 35.7658,
+    "lng": 140.3015,
+    "types": [
+      "earthquake",
+      "fire"
+    ],
+    "capacity": 500,
+    "details": {
+      "facilityType": "基幹災害医療拠点・福祉避難所",
+      "openHours": "災害時医療救護",
+      "equipment": [
+        "ヘリポート",
+        "自家発電設備（3日分以上）",
+        "人工透析設備",
+        "免震構造",
+        "バリアフリー"
+      ]
+    },
+    "category": "evacuation",
+    "source": "千葉県・成田市災害医療計画",
+    "trustScore": 0.98,
+    "accessibility": {
+      "wheelchair": true,
+      "toilet": true,
+      "elevator": true
+    }
   }
 ]
