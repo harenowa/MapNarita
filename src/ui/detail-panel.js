@@ -37,10 +37,9 @@ function renderTimetableEntries(entries) {
   if (!entries || !entries.length) return '<div style="color:var(--text-muted); padding:10px 0;">運行情報なし</div>';
   return entries.map(tt => `
     <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: var(--radius-md); margin-bottom: 10px; border: 1px solid var(--border-glass);">
-      <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-hover); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
-        <span>🛣 ${tt.route}</span>
-        <span style="font-size: 0.78rem; background: rgba(99, 102, 241, 0.2); color: var(--accent); padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.3);">
-          ${tt.direction ? `${tt.direction}` : ''}
+      <div style="margin-bottom: 8px; display: flex; align-items: center; justify-content: flex-end;">
+        <span style="font-size: 0.78rem; background: rgba(99, 102, 241, 0.2); color: var(--accent); padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.3); font-weight: 600;">
+          ${tt.direction ? `🚌 ${tt.direction}` : (tt.route ? `🚌 ${tt.route}` : '')}
         </span>
       </div>
       <div style="margin-bottom: 8px;">
