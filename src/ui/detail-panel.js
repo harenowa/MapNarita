@@ -3,6 +3,204 @@ import { CATEGORIES } from '../utils/constants';
 import { getAttrIconSVG } from '../utils/icons';
 import { getTrustBadgeInfo } from '../utils/scoring';
 
+// 時刻表を時間帯（時：分 分）のクリーンな一覧表形式でレンダリングする共通関数
+function formatTimesTable(times) {
+  if (!times || !times.length) return '<div style="color:var(--text-muted); padding:4px 0;">運行便なし</div>';
+  const byHour = {};
+  times.forEach(t => {
+    if (!t.includes(':')) return;
+    const [h, m] = t.split(':');
+    const hourKey = parseInt(h, 10);
+    if (!byHour[hourKey]) byHour[hourKey] = [];
+    byHour[hourKey].push(m);
+  });
+
+  const hours = Object.keys(byHour).map(Number).sort((a, b) => a - b);
+  if (!hours.length) return '<div style="color:var(--text-muted);">運行便なし</div>';
+
+  return `
+    <div style="display:grid; grid-template-columns: 36px 1fr; gap: 4px 10px; font-size: 0.82rem; background: rgba(0,0,0,0.25); border-radius: var(--radius-sm); padding: 8px 10px; max-height: 240px; overflow-y: auto;">
+      ${hours.map(h => `
+        <div style="font-weight: 700; color: var(--primary); text-align: right; border-right: 2px solid var(--primary-light); padding-right: 6px;">
+          ${h}時
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; letter-spacing: 0.05em; color: var(--text-main);">
+          ${byHour[h].map(m => `<span style="background: rgba(255,255,255,0.06); padding: 1px 5px; border-radius: 4px; font-family: monospace;">${m}</span>`).join('')}
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+// 時刻表エントリ群をレンダリングする共通関数
+function renderTimetableEntries(entries) {
+  if (!entries || !entries.length) return '<div style="color:var(--text-muted); padding:10px 0;">運行情報なし</div>';
+  return entries.map(tt => `
+    <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: var(--radius-md); margin-bottom: 10px; border: 1px solid var(--border-glass);">
+      <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-hover); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+        <span>🛣 ${tt.route}</span>
+        <span style="font-size: 0.78rem; background: rgba(99, 102, 241, 0.2); color: var(--accent); padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.3);">
+          ${tt.direction ? `${tt.direction}` : ''}
+        </span>
+      </div>
+      <div style="margin-bottom: 8px;">
+        <div style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); margin-bottom: 4px;">📅 平日ダイヤ（終日）</div>
+        ${formatTimesTable(tt.weekday)}
+      </div>
+      ${tt.weekend && tt.weekend.length ? `
+      <div style="margin-top: 8px;">
+        <div style="font-size: 0.75rem; font-weight: 600; color: #f59e0b; margin-bottom: 4px;">🏖️ 土休日ダイヤ（終日）</div>
+        ${formatTimesTable(tt.weekend)}
+      </div>` : ''}
+    </div>
+  `).join('');
+}
+
+// 現在時刻に基づいた動的リアルタイム運行情報生成ヘルパー
+function getBusRTHTML(spot, dirName, currentLang) {
+  const now = new Date();
+  const currentHours = now.getHours();
+  const currentMinutes = currentHours * 60 + now.getMinutes();
+  const isWeekend = now.getDay() === 0 || now.getDay() === 6;
+
+  let allTimes = [];
+  if (spot.timetable && spot.timetable.length > 0) {
+    const matchingEntries = dirName
+      ? spot.timetable.filter(tt => (tt.direction || tt.route) === dirName)
+      : spot.timetable;
+    const targetEntries = matchingEntries.length > 0 ? matchingEntries : spot.timetable;
+
+    targetEntries.forEach(entry => {
+      const schedule = (isWeekend && entry.weekend && entry.weekend.length > 0)
+        ? entry.weekend
+        : entry.weekday;
+      if (Array.isArray(schedule)) {
+        schedule.forEach(t => {
+          if (t && typeof t === 'string' && t.includes(':')) {
+            allTimes.push(t.trim());
+          }
+        });
+      }
+    });
+  }
+
+  // 重複排除して昇順ソート
+  const uniqueTimes = [...new Set(allTimes)].sort((a, b) => {
+    const [ha, ma] = a.split(':').map(Number);
+    const [hb, mb] = b.split(':').map(Number);
+    return (ha * 60 + ma) - (hb * 60 + mb);
+  });
+
+  // 現在時刻以降の直近のバスを探す
+  let nextTime = null;
+  let nextDiffMinutes = null;
+  for (const t of uniqueTimes) {
+    const [h, m] = t.split(':').map(Number);
+    const busMinutes = h * 60 + m;
+    if (busMinutes >= currentMinutes) {
+      nextTime = t;
+      nextDiffMinutes = busMinutes - currentMinutes;
+      break;
+    }
+  }
+
+  const rtMap = spot.rt_status_by_direction || {};
+  const staticRt = rtMap[dirName] || spot.rt_status || {};
+
+  // 1. 本日中に次の運行便がある場合
+  if (nextTime) {
+    const isNear = nextDiffMinutes <= 5;
+    const rawDelay = typeof staticRt.delayMinutes === 'number' ? staticRt.delayMinutes : 0;
+    const delayMinutes = isNear && rawDelay > 0 ? Math.min(rawDelay, 3) : 0;
+
+    const delayBadge = delayMinutes === 0
+      ? `<span class="badge trust">🟢 ${t('bus.onTime')}</span>`
+      : `<span class="badge danger">🟡 ${delayMinutes}${t('bus.delayed')}</span>`;
+
+    let relativeTimeStr = '';
+    if (nextDiffMinutes === 0) {
+      relativeTimeStr = currentLang === 'en' ? 'Departing now' : 'まもなく到着';
+    } else if (nextDiffMinutes < 60) {
+      relativeTimeStr = t('bus.approxMin').replace('{m}', nextDiffMinutes);
+    } else {
+      const diffH = Math.floor(nextDiffMinutes / 60);
+      const diffM = nextDiffMinutes % 60;
+      relativeTimeStr = currentLang === 'en' ? `in ~${diffH}h ${diffM}m` : `約${diffH}時間${diffM}分後`;
+    }
+
+    const vehicleNo = staticRt.vehicleNumber || '千交-' + (1000 + (spot.id ? parseInt(spot.id.replace(/\D/g, '') || '10', 10) * 19 % 8000 : 2841));
+    const isBarrierFree = staticRt.isBarrierFreeVehicle !== undefined ? staticRt.isBarrierFreeVehicle : true;
+    const crowding = staticRt.crowdingLevel || (currentLang === 'en' ? 'Seats available' : '座席に余裕あり');
+
+    return `
+      <div class="rt-status-box" style="margin-top: 14px; background: rgba(45, 139, 110, 0.15); border: 1px solid var(--primary); padding: 12px; border-radius: var(--radius-md);">
+        <div style="font-size: 0.75rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+          <span>🚌 ${t('bus.rtStatus')} <span style="color:var(--accent); font-weight:600;">[${dirName || '全方向'}]</span></span>
+          ${delayBadge}
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
+          <div style="font-size: 0.85rem; font-weight: 600;">
+            ${t('bus.nextBus')}: <span style="font-size: 1.15rem; color: var(--accent); font-weight: 700;">${nextTime}</span>
+            <span style="font-size: 0.78rem; color: var(--text-muted); margin-left: 6px; font-weight: normal;">(${relativeTimeStr})</span>
+          </div>
+          ${crowding ? `<span style="font-size: 0.72rem; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; color: var(--text-main);">👥 ${crowding}</span>` : ''}
+        </div>
+        <div style="font-size: 0.75rem; color: var(--text-muted);">
+          ${isBarrierFree ? `♿ ${t('bus.barrierFreeVehicle')} | ` : ''}${t('bus.vehicleNo')}: <span style="font-family: monospace;">${vehicleNo}</span>
+        </div>
+      </div>
+    `;
+  }
+
+  // 2. 本日の全便が運行終了した場合（夜間など）
+  if (uniqueTimes.length > 0) {
+    const tomorrowFirst = uniqueTimes[0];
+    return `
+      <div class="rt-status-box" style="margin-top: 14px; background: rgba(100, 116, 139, 0.15); border: 1px solid rgba(148, 163, 184, 0.3); padding: 12px; border-radius: var(--radius-md);">
+        <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+          <span>🚌 ${t('bus.rtStatus')} <span style="color:var(--accent); font-weight:600;">[${dirName || '全方向'}]</span></span>
+          <span class="badge" style="background: rgba(148, 163, 184, 0.2); color: var(--text-muted); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px;">🌙 ${t('bus.serviceEndedBadge')}</span>
+        </div>
+        <div style="margin-bottom: 4px;">
+          <div style="font-size: 0.88rem; font-weight: 600; color: var(--text-main);">
+            ${t('bus.serviceEnded')}
+          </div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
+            ${t('bus.firstBusTomorrow')}: <span style="font-size: 1rem; color: var(--primary); font-weight: 700; font-family: monospace;">${tomorrowFirst}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // 3. 時刻表データが無い場合の静的フォールバック
+  if (staticRt && (staticRt.nextBusTime || staticRt.active)) {
+    const delayBadge = (staticRt.delayMinutes === 0 || !staticRt.delayMinutes)
+      ? `<span class="badge trust">🟢 ${t('bus.onTime')}</span>`
+      : `<span class="badge danger">🟡 ${staticRt.delayMinutes}${t('bus.delayed')}</span>`;
+
+    return `
+      <div class="rt-status-box" style="margin-top: 14px; background: rgba(45, 139, 110, 0.15); border: 1px solid var(--primary); padding: 12px; border-radius: var(--radius-md);">
+        <div style="font-size: 0.75rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+          <span>🚌 ${t('bus.rtStatus')} <span style="color:var(--accent); font-weight:600;">[${dirName || '全方向'}]</span></span>
+          ${delayBadge}
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
+          <div style="font-size: 0.85rem; font-weight: 600;">
+            ${t('bus.nextBus')}: <span style="font-size: 1.15rem; color: var(--accent); font-weight: 700;">${staticRt.nextBusTime}</span>
+          </div>
+          ${staticRt.crowdingLevel ? `<span style="font-size: 0.72rem; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; color: var(--text-main);">👥 ${staticRt.crowdingLevel}</span>` : ''}
+        </div>
+        <div style="font-size: 0.75rem; color: var(--text-muted);">
+          ${staticRt.isBarrierFreeVehicle ? `♿ ${t('bus.barrierFreeVehicle')} | ` : ''}${t('bus.vehicleNo')}: <span style="font-family: monospace;">${staticRt.vehicleNumber || '千交-2841'}</span>
+        </div>
+      </div>
+    `;
+  }
+
+  return '';
+}
+
 export function showDetail(spot) {
   const panel = document.getElementById('detail-panel');
   if (!panel) return;
@@ -30,160 +228,12 @@ export function showDetail(spot) {
     const operator = currentLang === 'en' && spot.operator_en ? spot.operator_en : spot.operator;
     const routes = spot.details && spot.details.routes ? (currentLang === 'en' && spot.details.routes_en ? spot.details.routes_en : spot.details.routes) : [];
 
-    // 現在時刻に基づいた動的リアルタイム運行情報生成ヘルパー
-    const getRTHTML = (dirName) => {
-      const now = new Date();
-      const currentHours = now.getHours();
-      const currentMinutes = currentHours * 60 + now.getMinutes();
-      const isWeekend = now.getDay() === 0 || now.getDay() === 6;
-
-      let allTimes = [];
-      if (spot.timetable && spot.timetable.length > 0) {
-        const matchingEntries = dirName
-          ? spot.timetable.filter(tt => (tt.direction || tt.route) === dirName)
-          : spot.timetable;
-        const targetEntries = matchingEntries.length > 0 ? matchingEntries : spot.timetable;
-
-        targetEntries.forEach(entry => {
-          const schedule = (isWeekend && entry.weekend && entry.weekend.length > 0)
-            ? entry.weekend
-            : entry.weekday;
-          if (Array.isArray(schedule)) {
-            schedule.forEach(t => {
-              if (t && typeof t === 'string' && t.includes(':')) {
-                allTimes.push(t.trim());
-              }
-            });
-          }
-        });
-      }
-
-      // 重複排除して昇順ソート
-      const uniqueTimes = [...new Set(allTimes)].sort((a, b) => {
-        const [ha, ma] = a.split(':').map(Number);
-        const [hb, mb] = b.split(':').map(Number);
-        return (ha * 60 + ma) - (hb * 60 + mb);
-      });
-
-      // 現在時刻以降の直近のバスを探す
-      let nextTime = null;
-      let nextDiffMinutes = null;
-      for (const t of uniqueTimes) {
-        const [h, m] = t.split(':').map(Number);
-        const busMinutes = h * 60 + m;
-        if (busMinutes >= currentMinutes) {
-          nextTime = t;
-          nextDiffMinutes = busMinutes - currentMinutes;
-          break;
-        }
-      }
-
-      const rtMap = spot.rt_status_by_direction || {};
-      const staticRt = rtMap[dirName] || spot.rt_status || {};
-
-      // 1. 本日中に次の運行便がある場合
-      if (nextTime) {
-        // 次の便までの分数に応じた自然な運行ステータス
-        // 直近3分以内の到着予定かつ元の静的データに遅延があれば1〜2分遅れを反映、それ以外は定刻運行中
-        const isNear = nextDiffMinutes <= 5;
-        const rawDelay = typeof staticRt.delayMinutes === 'number' ? staticRt.delayMinutes : 0;
-        const delayMinutes = isNear && rawDelay > 0 ? Math.min(rawDelay, 3) : 0;
-
-        const delayBadge = delayMinutes === 0
-          ? `<span class="badge trust">🟢 ${t('bus.onTime')}</span>`
-          : `<span class="badge danger">🟡 ${delayMinutes}${t('bus.delayed')}</span>`;
-
-        let relativeTimeStr = '';
-        if (nextDiffMinutes === 0) {
-          relativeTimeStr = currentLang === 'en' ? 'Departing now' : 'まもなく到着';
-        } else if (nextDiffMinutes < 60) {
-          relativeTimeStr = t('bus.approxMin').replace('{m}', nextDiffMinutes);
-        } else {
-          const diffH = Math.floor(nextDiffMinutes / 60);
-          const diffM = nextDiffMinutes % 60;
-          relativeTimeStr = currentLang === 'en' ? `in ~${diffH}h ${diffM}m` : `約${diffH}時間${diffM}分後`;
-        }
-
-        const vehicleNo = staticRt.vehicleNumber || '千交-' + (1000 + (spot.id ? parseInt(spot.id.replace(/\D/g, '') || '10', 10) * 19 % 8000 : 2841));
-        const isBarrierFree = staticRt.isBarrierFreeVehicle !== undefined ? staticRt.isBarrierFreeVehicle : true;
-        const crowding = staticRt.crowdingLevel || (currentLang === 'en' ? 'Seats available' : '座席に余裕あり');
-
-        return `
-          <div class="rt-status-box" style="margin-top: 14px; background: rgba(45, 139, 110, 0.15); border: 1px solid var(--primary); padding: 12px; border-radius: var(--radius-md);">
-            <div style="font-size: 0.75rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
-              <span>🚌 ${t('bus.rtStatus')} <span style="color:var(--accent); font-weight:600;">[${dirName || '全方向'}]</span></span>
-              ${delayBadge}
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
-              <div style="font-size: 0.85rem; font-weight: 600;">
-                ${t('bus.nextBus')}: <span style="font-size: 1.15rem; color: var(--accent); font-weight: 700;">${nextTime}</span>
-                <span style="font-size: 0.78rem; color: var(--text-muted); margin-left: 6px; font-weight: normal;">(${relativeTimeStr})</span>
-              </div>
-              ${crowding ? `<span style="font-size: 0.72rem; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; color: var(--text-main);">👥 ${crowding}</span>` : ''}
-            </div>
-            <div style="font-size: 0.75rem; color: var(--text-muted);">
-              ${isBarrierFree ? `♿ ${t('bus.barrierFreeVehicle')} | ` : ''}${t('bus.vehicleNo')}: <span style="font-family: monospace;">${vehicleNo}</span>
-            </div>
-          </div>
-        `;
-      }
-
-      // 2. 本日の全便が運行終了した場合（夜間など）
-      if (uniqueTimes.length > 0) {
-        const tomorrowFirst = uniqueTimes[0];
-        return `
-          <div class="rt-status-box" style="margin-top: 14px; background: rgba(100, 116, 139, 0.15); border: 1px solid rgba(148, 163, 184, 0.3); padding: 12px; border-radius: var(--radius-md);">
-            <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
-              <span>🚌 ${t('bus.rtStatus')} <span style="color:var(--accent); font-weight:600;">[${dirName || '全方向'}]</span></span>
-              <span class="badge" style="background: rgba(148, 163, 184, 0.2); color: var(--text-muted); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px;">🌙 ${t('bus.serviceEndedBadge')}</span>
-            </div>
-            <div style="margin-bottom: 4px;">
-              <div style="font-size: 0.88rem; font-weight: 600; color: var(--text-main);">
-                ${t('bus.serviceEnded')}
-              </div>
-              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
-                ${t('bus.firstBusTomorrow')}: <span style="font-size: 1rem; color: var(--primary); font-weight: 700; font-family: monospace;">${tomorrowFirst}</span>
-              </div>
-            </div>
-          </div>
-        `;
-      }
-
-      // 3. 時刻表データが無い場合の静的フォールバック
-      if (staticRt && (staticRt.nextBusTime || staticRt.active)) {
-        const delayBadge = (staticRt.delayMinutes === 0 || !staticRt.delayMinutes)
-          ? `<span class="badge trust">🟢 ${t('bus.onTime')}</span>`
-          : `<span class="badge danger">🟡 ${staticRt.delayMinutes}${t('bus.delayed')}</span>`;
-
-        return `
-          <div class="rt-status-box" style="margin-top: 14px; background: rgba(45, 139, 110, 0.15); border: 1px solid var(--primary); padding: 12px; border-radius: var(--radius-md);">
-            <div style="font-size: 0.75rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
-              <span>🚌 ${t('bus.rtStatus')} <span style="color:var(--accent); font-weight:600;">[${dirName || '全方向'}]</span></span>
-              ${delayBadge}
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
-              <div style="font-size: 0.85rem; font-weight: 600;">
-                ${t('bus.nextBus')}: <span style="font-size: 1.15rem; color: var(--accent); font-weight: 700;">${staticRt.nextBusTime}</span>
-              </div>
-              ${staticRt.crowdingLevel ? `<span style="font-size: 0.72rem; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; color: var(--text-main);">👥 ${staticRt.crowdingLevel}</span>` : ''}
-            </div>
-            <div style="font-size: 0.75rem; color: var(--text-muted);">
-              ${staticRt.isBarrierFreeVehicle ? `♿ ${t('bus.barrierFreeVehicle')} | ` : ''}${t('bus.vehicleNo')}: <span style="font-family: monospace;">${staticRt.vehicleNumber || '千交-2841'}</span>
-            </div>
-          </div>
-        `;
-      }
-
-      return '';
-    };
-
     let timetableHTML = '';
     if (spot.timetable && spot.timetable.length > 0) {
       timetableData = spot.timetable;
 
       // 方向一覧を取得
       const directions = [...new Set(spot.timetable.map(tt => tt.direction || tt.route))];
-      const hasDirections = spot.timetable.some(tt => tt.direction);
       const firstDir = directions[0];
 
       // タブボタン生成
@@ -203,66 +253,16 @@ export function showDetail(spot) {
       // 最初の方向のコンテンツ
       const firstEntries = spot.timetable.filter(tt => (tt.direction || tt.route) === firstDir);
 
-      // 時刻表を時間帯（時：分 分）のクリーンな一覧表形式でレンダリングする共通関数
-      const formatTimesTable = (times) => {
-        if (!times || !times.length) return '<div style="color:var(--text-muted); padding:4px 0;">運行便なし</div>';
-        const byHour = {};
-        times.forEach(t => {
-          if (!t.includes(':')) return;
-          const [h, m] = t.split(':');
-          const hourKey = parseInt(h, 10);
-          if (!byHour[hourKey]) byHour[hourKey] = [];
-          byHour[hourKey].push(m);
-        });
-
-        // 始発〜最終の時を取り出し
-        const hours = Object.keys(byHour).map(Number).sort((a, b) => a - b);
-        if (!hours.length) return '<div style="color:var(--text-muted);">運行便なし</div>';
-
-        return `
-          <div style="display:grid; grid-template-columns: 36px 1fr; gap: 4px 10px; font-size: 0.82rem; background: rgba(0,0,0,0.25); border-radius: var(--radius-sm); padding: 8px 10px; max-height: 240px; overflow-y: auto;">
-            ${hours.map(h => `
-              <div style="font-weight: 700; color: var(--primary); text-align: right; border-right: 2px solid var(--primary-light); padding-right: 6px;">
-                ${h}時
-              </div>
-              <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; letter-spacing: 0.05em; color: var(--text-main);">
-                ${byHour[h].map(m => `<span style="background: rgba(255,255,255,0.06); padding: 1px 5px; border-radius: 4px; font-family: monospace;">${m}</span>`).join('')}
-              </div>
-            `).join('')}
-          </div>
-        `;
-      };
-
-      const renderEntries = (entries) => entries.map(tt => `
-        <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: var(--radius-md); margin-bottom: 10px; border: 1px solid var(--border-glass);">
-          <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-hover); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
-            <span>🛣 ${tt.route}</span>
-            <span style="font-size: 0.78rem; background: rgba(99, 102, 241, 0.2); color: var(--accent); padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.3);">
-              ${tt.direction ? `${tt.direction}` : ''}
-            </span>
-          </div>
-          <div style="margin-bottom: 8px;">
-            <div style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); margin-bottom: 4px;">📅 平日ダイヤ（終日）</div>
-            ${formatTimesTable(tt.weekday)}
-          </div>
-          ${tt.weekend && tt.weekend.length ? `
-          <div style="margin-top: 8px;">
-            <div style="font-size: 0.75rem; font-weight: 600; color: #f59e0b; margin-bottom: 4px;">🏖️ 土休日ダイヤ（終日）</div>
-            ${formatTimesTable(tt.weekend)}
-          </div>` : ''}
-        </div>
-      `).join('');
-
       timetableHTML = `
         <div style="margin-top: 14px;">
           <div class="section-title">⏱️ ${t('bus.timetable')}（終日運行）</div>
           <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 6px;">目的地方向（上り・下り）を選択して切り替え:</div>
           ${dirTabsHTML}
           <div id="rt-status-container">
-            ${getRTHTML(firstDir)}
+            ${getBusRTHTML(spot, firstDir, currentLang)}
           </div>
           <div id="timetable-content" style="margin-top: 10px;">
-            ${renderEntries(firstEntries)}
+            ${renderTimetableEntries(firstEntries)}
           </div>
         </div>
       `;
@@ -463,58 +463,12 @@ export function showDetail(spot) {
         // 選択された方向のリアルタイム運行情報を更新
         const rtContainer = document.getElementById('rt-status-container');
         if (rtContainer && spot.category === 'busStop') {
-          rtContainer.innerHTML = getRTHTML(selectedDir);
+          rtContainer.innerHTML = getBusRTHTML(spot, selectedDir, currentLang);
         }
 
         // 選択された方向のエントリを表示
         const entries = timetableData.filter(tt => (tt.direction || tt.route) === selectedDir);
-
-        const formatTimesTableTab = (times) => {
-          if (!times || !times.length) return '<div style="color:var(--text-muted); padding:4px 0;">運行便なし</div>';
-          const byHour = {};
-          times.forEach(t => {
-            if (!t.includes(':')) return;
-            const [h, m] = t.split(':');
-            const hourKey = parseInt(h, 10);
-            if (!byHour[hourKey]) byHour[hourKey] = [];
-            byHour[hourKey].push(m);
-          });
-          const hours = Object.keys(byHour).map(Number).sort((a, b) => a - b);
-          if (!hours.length) return '<div style="color:var(--text-muted);">運行便なし</div>';
-
-          return `
-            <div style="display:grid; grid-template-columns: 36px 1fr; gap: 4px 10px; font-size: 0.82rem; background: rgba(0,0,0,0.25); border-radius: var(--radius-sm); padding: 8px 10px; max-height: 240px; overflow-y: auto;">
-              ${hours.map(h => `
-                <div style="font-weight: 700; color: var(--primary); text-align: right; border-right: 2px solid var(--primary-light); padding-right: 6px;">
-                  ${h}時
-                </div>
-                <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; letter-spacing: 0.05em; color: var(--text-main);">
-                  ${byHour[h].map(m => `<span style="background: rgba(255,255,255,0.06); padding: 1px 5px; border-radius: 4px; font-family: monospace;">${m}</span>`).join('')}
-                </div>
-              `).join('')}
-            </div>
-          `;
-        };
-
-        timetableContent.innerHTML = entries.map(tt => `
-          <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: var(--radius-md); margin-bottom: 10px; border: 1px solid var(--border-glass);">
-            <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-hover); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
-              <span>🛣 ${tt.route}</span>
-              <span style="font-size: 0.78rem; background: rgba(99, 102, 241, 0.2); color: var(--accent); padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.3);">
-                ${tt.direction ? `${tt.direction}` : ''}
-              </span>
-            </div>
-            <div style="margin-bottom: 8px;">
-              <div style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); margin-bottom: 4px;">📅 平日ダイヤ（終日）</div>
-              ${formatTimesTableTab(tt.weekday)}
-            </div>
-            ${tt.weekend && tt.weekend.length ? `
-            <div style="margin-top: 8px;">
-              <div style="font-size: 0.75rem; font-weight: 600; color: #f59e0b; margin-bottom: 4px;">🏖️ 土休日ダイヤ（終日）</div>
-              ${formatTimesTableTab(tt.weekend)}
-            </div>` : ''}
-          </div>
-        `).join('');
+        timetableContent.innerHTML = renderTimetableEntries(entries);
       });
     }
   }
